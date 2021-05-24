@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>
+        {{ t.title }}
+    </title>
+</head>
+<body>
+{% for i in block %}
+
+       
+        
+        {% if i.text == "vid" %}
+
+            <video width="100" height="100" controls>
+            <source src="{{ i.cont.url }}" type="video/mp4">
+            <source src="{{ i.cont.url }}" type="video/mkv">
+            </video>
+        {% else %}
+            <br>
+            <p align="{{ i.align }}"">
+            <img src="{{ i.cont.url }}">
+            </p>
+            <p align="{{ i.align }}">{{ i.text }}</p>
+        <br>
+        {% endif %}
+{% endfor %}
+</body>
+</html>
