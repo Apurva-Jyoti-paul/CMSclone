@@ -11,7 +11,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+from typing import cast
 import cloudinary
+from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -21,10 +23,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-z-^cml18k%4qym_-tn1)ul4+sqt7ij_u*6-o=2qyro%95_9q-j'
+SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG',cast=bool)
 
 ALLOWED_HOSTS = []
 
@@ -130,8 +132,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 cloudinary.config(
-  cloud_name = 'paulserver',
-  api_key = '685276913473493',
-  api_secret = 'dOR5zagNC82_MTh0GwwdopY1sdU',
-  secure = True
+  cloud_name = config('cloud_name'),
+  api_key = config('api_key'),
+  api_secret = config('api_secret'),
+  secure = config('secure',cast=bool)
 )
