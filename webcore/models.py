@@ -13,6 +13,8 @@ class website(models.Model):
     hname= models.CharField(max_length=1000)
     admin = models.ForeignKey(User,on_delete=models.CASCADE)
 
+    def __str__(self):
+        return self.hname
 
 
 class webpage(models.Model):
@@ -29,6 +31,8 @@ class text_block(models.Model):
     align= models.CharField(max_length=10,default='center',choices=al)
     text = models.CharField(blank=True,max_length=10000,null=True)
     cont = CloudinaryField('media',null=True,blank=True)
+    link = models.URLField(max_length=1000,null=True)
+
         
 
 

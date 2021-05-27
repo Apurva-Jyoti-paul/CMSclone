@@ -1,0 +1,31 @@
+<form action="{% url 'betaedit' page.identifier %}" method="POST" enctype="multipart/form-data">
+<label>Enter Text:</label>
+<input type="text" name="text">
+<br>
+<label>Upload file:</label>
+<input type="file">
+{% csrf_token %}
+<input type="submit" value="save">
+</form>
+<button id="upload_widget" class="cloudinary-button">Upload files</button>
+
+<script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
+
+<script type="text/javascript">  
+var obj;
+var myWidget = cloudinary.createUploadWidget({
+  cloudName: 'paulserver', 
+  uploadPreset: 'qjwb2yvf'}, (error, result) => { 
+    if (!error && result && result.event === "success") { 
+      console.log('Done! Here is the image info: ', result.info); 
+      console.log(result.info.secure_url);
+    }
+  }
+)
+
+
+
+document.getElementById("upload_widget").addEventListener("click", function(){
+    myWidget.open();
+  }, false);
+</script>
