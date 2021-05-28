@@ -1,5 +1,6 @@
 from django.contrib import admin
-from .models import website,webpage,text_block
+from django.contrib.admin.sites import site
+from .models import media, website,webpage,text_block
 
 class webpageInline(admin.StackedInline):
 
@@ -17,6 +18,7 @@ class webpageAdmin(admin.ModelAdmin):
     fields= ['web','title','identifier']
     inlines=[text_blockInline]
 
+admin.site.register(media)
 admin.site.register(website)
 admin.site.register(webpage,webpageAdmin)
 admin.site.register(text_block)

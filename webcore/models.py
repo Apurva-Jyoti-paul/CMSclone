@@ -35,6 +35,16 @@ class text_block(models.Model):
 
         
 
+class contents(models.Model):
 
+    pag = models.ForeignKey(webpage,on_delete=models.CASCADE)
+    text= models.CharField(max_length=10000)
+    text2=models.CharField(max_length=100,null=True)
+    align= models.CharField(max_length=50,null=True)
+    dc=models.CharField(max_length=20,null=True)
+    
+class media(models.Model):
+    med = models.URLField(max_length=1000,null=True)
+    webp= models.ForeignKey(webpage,on_delete=models.CASCADE)
 
-# Create your models here.
+# Create your models here.my

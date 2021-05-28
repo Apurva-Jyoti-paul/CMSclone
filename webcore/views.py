@@ -1,8 +1,8 @@
 from django.shortcuts import redirect,render
 from django.contrib.auth.decorators import login_required
-from .models import text_block,webpage,website
+from .models import media, text_block,webpage,website
 from django.contrib.auth.models import User
-from .forms import websiteForm,txtForm,picForm
+from .forms import websiteForm,txtForm,picForm,save_mediaform
 import cloudinary
 
 @login_required
@@ -67,7 +67,7 @@ def edit_pagetxt(request,key):
         form= txtForm(request.POST,request.FILES)
         print(form)
         if 1:
-            print('a')
+            print('a')                                    ###buggy view
             f=form.save(commit=False)
             print(request.FILES)
             obj = cloudinary.uploader.upload(request.FILES)
@@ -86,6 +86,22 @@ def betaformview(request,key,k):
 
     page = webpage.objects.get(web__hname=key,identifier=k)
     print(page)
-    return render(request,'editbeta.html',{'page':page})
+    midia=media.objects.filter(webp=page).order_by('-id')
+    print(midia[0].med)
+    return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia})
 
 
+def save_media(request,key):
+    if request.method=='POST':
+        f= save_mediaform(request.POST)
+        l=webpage.objects.get(identifier=key)
+        print(l)
+        if f.is_valid():
+            sv=f.save(commit=False)
+            sv.webp=l
+            print('a')
+            sv.save()
+            return redirect("../")
+    else:
+        f=save_mediaform()
+        return render(request,'editbeta.html',{'f':f})
