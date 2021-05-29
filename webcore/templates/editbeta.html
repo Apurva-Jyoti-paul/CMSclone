@@ -1,12 +1,81 @@
 {% load static %}
 <html>
   <head>
+    <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+
+    <script>
+  var c;
+  c="";
+ function addpic(picurl)
+ {
+
+  var k;
+  console.log(picurl);
+  var l;
+  l="";
+  for(i=(picurl.length-1);i>=0;i--)
+  {
+    if(picurl[i]!='.')
+    {
+      l=picurl[i] + l;
+    }
+    else
+    {
+      break;
+    }
+  }
+  console.log(l);
+  if((l=="jpg")||(l=="png"))
+  {
+  k= document.getElementById("texteditor").innerHTML;
+  {
+  picurl= "<img src=\"" + picurl + "\" height=\"100\" width=\"100\">";
+  k = k + picurl;
+  document.getElementById("texteditor").innerHTML=k;
+  }
+}
+else 
+{
+  k= document.getElementById("texteditor").innerHTML;
+  picurl= "<video width=\"320\" height=\"240\" autoplay> <source src=\"" + picurl + "\" type=\"video/mp4\">";
+  k = k + picurl;
+  document.getElementById("texteditor").innerHTML=k;
+}
+ }
+
+function weight(b)
+{
+  var i;
+  if(b=="b")
+  {
+    i= document.getElementById("texteditor").innerHTML;
+    i= "<b>"+ i + "</b>";
+    console.log(i);
+    document.getElementById("texteditor").innerHTML=i;
+  }
+  if(b=="i")
+  {
+    i= document.getElementById("texteditor").innerHTML;
+    i= "<i>"+ i + "</i>";
+    document.getElementById("texteditor").innerHTML=i;
+  }
+  if(b=="u")
+  {
+    i= document.getElementById("texteditor").innerHTML;
+    i= "<u>"+ i + "</u>";
+    document.getElementById("texteditor").innerHTML=i;
+  }
+}
+
+      </script>
+
  <style>
    .i{
     text-align: center;
     width: 700px;
     height: 25px;
 }
+
 .f {
  font-size: 25px;
  size: 20px;
@@ -15,11 +84,13 @@
  margin-left: 25%;
  margin-top: 22%;
 }
+
 body {
-background-image: linear-gradient(to bottom right,rgba(255, 255, 255, 0.911), rgba(33, 66, 177, 0.966));
+background-image: linear-gradient(to bottom right,rgba(97, 241, 13, 0.911), rgba(33, 66, 177, 0.966));
 margin: 0px;
 padding: 0px;
 }
+
 .topnav {
 background-color: #333;
 overflow: hidden;
@@ -63,10 +134,38 @@ background-color: #04AA6D;
 color: white;
 }
 
+.btn-group .button {
+  background-color: #bdbebd; /* Green */
+  border: 1px solid rgb(242, 248, 242);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 17px;
+  cursor: pointer;
+  opacity: 0.6;
+  float: left;
+  border-radius: 7px;
+}
+
+.btn-group .button:not(:last-child) {
+  border-right: none; /* Prevent double borders */
+}
+
+.btn-group .button:hover {
+  background-color: #df5d21;
+}
+
 .topnav a.ri {
 border-right: 0px;
 }
 
+.c1 {
+  position: absolute;
+  left:60%;
+  top: 15%;
+}
 .pages {
   position: absolute;
   left: 0%;
@@ -83,12 +182,12 @@ border-right: 0px;
 .texteditor
 {
   position: absolute;
-  left: 16%;
+  left: 8%;
   border-radius: 7px;
   top:20%;
   background-color: rgb(235, 231, 231);
   height: 65%;
-  width: 55%;
+  width: 66%;
   padding: 10px;
   box-shadow: 5px 10px #888888;
 }
@@ -96,25 +195,36 @@ border-right: 0px;
   </head>
 <body>
   <div class="topnav">
-    <a href="../home">DASHBOARD</a>
+    <a href="{% url 'home' %}">DASHBOARD</a>
     <a href="#news">ACCOUNT</a>
     <a href="#contact">CONTACT</a>
     <a class="ri" href="#about">ABOUT</a>
   </div>
-  
+<div class="c1">
+  <div class="btn-group">
+    <button class="button" onclick="weight('b')"><i class="fas fa-bold"></i></button>
+    <button class="button" onclick="weight('i')"><i class="fas fa-italic"></i></button>
+    <button class="button" onclick="weight('u')"><i class="fas fa-underline"></i></button>
+    <button class="button"><i class="fas fa-align-right"></i></button>
+    <button class="button"><i class="fas fa-align-left"></i></button>
+    <button class="button"><i class="fas fa-align-center"></i></button>
+  </div>
+  </div>
 <div class="media">
   <p style="text-align: center;font-family: sans-serif;color: white;font-size: 25px;font-weight: bold;opacity: 1;">
   MEDIA/EFFECTS<br><br><br><br>
+  
   {% for i in midia %}
-    <img src="{{ i.med }}" height="150" width="150">
+    <img src="{{ i.med }}" height="150" onclick="addpic('{{ i.med }}')" width="150">
     <br><br>
   {% endfor %}
   <br><br>
-  <button id="upload_widget" class="cloudinary-button">Upload files</button>
+  <button id="upload_widget" class="cloudinary-button"><i class="fas fa-upload"></i>
+  </button>
 </p>
 </div>
 
-<div class="texteditor" contenteditable="True">
+<div id="texteditor" class="texteditor" contenteditable="True">
 
 </div>
 

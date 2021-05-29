@@ -90,7 +90,7 @@ def betaformview(request,key,k):
     print(midia[0].med)
     return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia})
 
-
+@login_required
 def save_media(request,key):
     if request.method=='POST':
         f= save_mediaform(request.POST)
@@ -101,7 +101,7 @@ def save_media(request,key):
             sv.webp=l
             print('a')
             sv.save()
-            return redirect("../")
+            return redirect("home")
     else:
         f=save_mediaform()
         return render(request,'editbeta.html',{'f':f})

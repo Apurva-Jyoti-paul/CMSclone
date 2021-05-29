@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{% block head_title %}{% endblock %}</title>
+    {% block extra_head %}
+    {% endblock %}
+    <style>
+
+      body {
+      background-image: linear-gradient(to bottom right,rgba(97, 241, 13, 0.911), rgba(33, 66, 177, 0.966));
+      margin: 0px;
+      padding: 0px;
+      }
+      
+      .topnav {
+      background-color: #333;
+      overflow: hidden;
+      margin:0%;
+      }
+      
+      /* Style the links inside the navigation bar */
+      .topnav a {
+      float: left;
+      color: #f2f2f2;
+      text-align: center;
+      padding: 17px 16px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 200;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin: 0%;
+      }
+      
+      /* Change the color of links on hover */
+      .topnav a:hover {
+      background-color: rgb(233, 76, 3);
+      color: rgb(231, 242, 246);
+      font-weight: bold;
+      }
+      
+      .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+      }
+      
+      </style>
+  </head>
+  <body>
+    <div class="topnav">
+      <a href="{% url 'home' %}">DASHBOARD</a>
+      <a href="#news">ACCOUNT</a>
+      <a href="#contact">CONTACT</a>
+      <a class="ri" href="#about">ABOUT</a>
+    </div>
+    {% block body %}
+
+    {% if messages %}
+    <div>
+      <strong>Messages:</strong>
+      <ul>
+        {% for message in messages %}
+        <li>{{message}}</li>
+        {% endfor %}
+      </ul>
+    </div>
+    {% endif %}
+
+    <div>
+      <strong>Menu:</strong>
+      <ul>
+        {% if user.is_authenticated %}
+        <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
+        <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
+        {% else %}
+        <li><a href="{% url 'account_login' %}">Sign In</a></li>
+        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+        {% endif %}
+      </ul>
+    </div>
+    {% block content %}
+    {% endblock %}
+    {% endblock %}
+    {% block extra_body %}
+    {% endblock %}
+  </body>
+</html>
