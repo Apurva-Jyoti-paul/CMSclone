@@ -81,13 +81,14 @@ def edit_pagetxt(request,key):
         form=txtForm()
         return render(request,'editbeta.html',{'form':form})
 
-
+@login_required
 def betaformview(request,key,k):
 
     page = webpage.objects.get(web__hname=key,identifier=k)
     print(page)
     midia=media.objects.filter(webp=page).order_by('-id')
-    print(midia[0].med)
+    if(midia.count()):
+        print(midia[0].med)
     return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia})
 
 @login_required

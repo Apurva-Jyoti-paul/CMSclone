@@ -46,5 +46,6 @@ class contents(models.Model):
 class media(models.Model):
     med = models.URLField(max_length=1000,null=True)
     webp= models.ForeignKey(webpage,on_delete=models.CASCADE)
+    resourcetype= models.CharField(max_length=10,null=True)
 
 # Create your models here.my

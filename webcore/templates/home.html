@@ -4,40 +4,51 @@
         <title>
             HOME
         </title>
+        <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
 <style>
     /* Add a black background color to the top navigation */
-.topnav {
-  background-color: #333;
-  overflow: hidden;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-  float: left;
-  color: #f2f2f2;
-  text-align: center;
-  padding: 14px 16px;
-  text-decoration: none;
-  font-size: 15px;
-  font-weight: 200;
-  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-  background-color: #ddd;
-  color: rgb(79, 200, 248);
-}
-
-/* Add a color to the active/current link */
-.topnav a.active {
-  background-color: #04AA6D;
-  color: white;
-}
-
+    .topnav {
+      /*background-color: rgb(20, 18, 24);*/
+      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      overflow: hidden;
+      height: 100px;
+      margin:0%;
+      text-align: center;
+      }
+      
+      /* Style the links inside the navigation bar */
+      .topnav a {
+      float: left;
+      position: relative;
+      top: 25%;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      opacity: 1;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin: 0%;
+      }
+      
+      /* Change the color of links on hover */
+      .topnav a:hover {
+      position: relative;
+      height: 100%;
+      background-color: rgb(233, 76, 3);
+      color: rgb(231, 242, 246);
+      font-weight: bold;
+      }
+      
+      .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+      }
+      
 body {
     height: 100vh;
-    background-image: linear-gradient(to bottom right,rgba(0, 255, 42, 0.911), rgba(0, 234, 255, 0.966));
+    background-image: linear-gradient(to bottom right,rgba(255, 255, 255, 0.911), rgba(224, 224, 224, 0.966));
     margin: 0px;
     padding: 0px;
 }
@@ -70,16 +81,12 @@ li a:hover {
     </head>
     <body>
     <div>
-        <div class="topnav">
-            <a style="" href="#home">Dashboard</a>
-            <a></a>
-            <a></a>
-            <a></a>
-            <a href="#news">Account</a>
-            <a href="#contact">Contact</a>
-            <a style="text-align: right;" href="#about">About</a>
-          </div>
-
+      <div class="topnav">
+        <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
+         <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
+         <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
+         <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
+       </div>
 
 
        <ul class="websites">

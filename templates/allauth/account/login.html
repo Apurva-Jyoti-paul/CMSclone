@@ -3,6 +3,26 @@
 <title>
   login
 </title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+<script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+<style>
+.decloc {
+  position: absolute;
+  left: 35%;
+  text-align: center;
+  height: 500px;
+  width: 400px;
+  background-color: rgb(22, 2, 37);
+  padding: 40px;
+  opacity: 0.5;
+  border-radius: 10px;
+}
+
+
+.tdecloc {
+  color: azure;
+}
+</style>
 </head>
 <body>
   <body>
@@ -14,8 +34,9 @@
 {% block head_title %}{% trans "Sign In" %}{% endblock %}
 
 {% block content %}
-
-  
+<br><br><br>
+<div class="decloc">
+  <div class="tdecloc">
 <h1>{% trans "Sign In" %}</h1>
 
 {% get_providers as socialaccount_providers %}
@@ -37,9 +58,6 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
 
 {% include "socialaccount/snippets/login_extra.html" %}
 
-{% else %}
-<p>{% blocktrans %}If you have not created an account yet, then please do cmdd
-<a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endif %}
 
 <form class="login" method="POST" action="{% url 'account_login' %}">
@@ -48,10 +66,15 @@ for a {{ site_name }} account and sign in below:{% endblocktrans %}</p>
   {% if redirect_field_value %}
   <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
   {% endif %}
-  <a class="button secondaryAction" href="{% url 'account_reset_password' %}">{% trans "Forgot Password?" %}</a>
-  <button class="primaryAction" type="submit">{% trans "Sign In" %}</button>
-</form>
 
+  <button style="background-color: rgb(14, 88, 207);width: 300px;padding-top: 12px;padding-bottom: 12px;border-radius: 7px;opacity: 1;" class="primaryAction" type="submit">{% trans "Sign In" %}   <i class="fas fa-sign-in-alt"></i></button><br>
+ <br><br> <a style="color: rgb(255, 0, 0);" class="button secondaryAction" href="{% url 'account_reset_password' %}"><b>{% trans "Forgot Password?" %}</b></a>
+</form>
+<br><br>
+<p>{% blocktrans %}If you have not created an account yet, then please do
+  <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
 {% endblock %}
+</div>
+</div>
 </body>
 </html>

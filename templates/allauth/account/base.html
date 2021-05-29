@@ -4,35 +4,48 @@
     <title>{% block head_title %}{% endblock %}</title>
     {% block extra_head %}
     {% endblock %}
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <style>
 
       body {
-      background-image: linear-gradient(to bottom right,rgba(97, 241, 13, 0.911), rgba(33, 66, 177, 0.966));
+      background-image: url("https://images.unsplash.com/photo-1497864979123-ef3595423b92?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MTB8fHxlbnwwfHx8fA%3D%3D&auto=format&fit=crop&w=500&q=60");
       margin: 0px;
       padding: 0px;
+      background-size: cover;
+      font-family: "Audiowide", sans-serif;
       }
       
       .topnav {
-      background-color: #333;
+      /*background-color: rgb(20, 18, 24);*/
+      background-image: linear-gradient(to bottom right,rgba(31, 32, 31, 0.911), rgba(19, 18, 18, 0.966));
+      background-color: rgb(27, 25, 25);
+      opacity: 0.6;
       overflow: hidden;
+      height: 100px;
       margin:0%;
+      text-align: center;
       }
       
       /* Style the links inside the navigation bar */
       .topnav a {
       float: left;
-      color: #f2f2f2;
+      position: relative;
+      top: 25%;
+      color: #ffffff;
       text-align: center;
-      padding: 17px 16px;
+      padding: 20px;
       text-decoration: none;
       font-size: 15px;
-      font-weight: 200;
+      font-weight: 800;
+      opacity: 1;
       font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
       margin: 0%;
       }
       
       /* Change the color of links on hover */
       .topnav a:hover {
+      position: relative;
+      height: 100%;
       background-color: rgb(233, 76, 3);
       color: rgb(231, 242, 246);
       font-weight: bold;
@@ -47,10 +60,10 @@
   </head>
   <body>
     <div class="topnav">
-      <a href="{% url 'home' %}">DASHBOARD</a>
-      <a href="#news">ACCOUNT</a>
-      <a href="#contact">CONTACT</a>
-      <a class="ri" href="#about">ABOUT</a>
+     <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
+      <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
+      <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
+      <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
     </div>
     {% block body %}
 
@@ -66,14 +79,14 @@
     {% endif %}
 
     <div>
-      <strong>Menu:</strong>
+    <!--  <strong>Menu:</strong>-->
       <ul>
         {% if user.is_authenticated %}
         <li><a href="{% url 'account_email' %}">Change E-mail</a></li>
         <li><a href="{% url 'account_logout' %}">Sign Out</a></li>
         {% else %}
-        <li><a href="{% url 'account_login' %}">Sign In</a></li>
-        <li><a href="{% url 'account_signup' %}">Sign Up</a></li>
+     <!--   <li><a href="{% url 'account_login' %}">Sign In</a></li>-->
+       <!-- <li><a href="{% url 'account_signup' %}">Sign Up</a></li>-->
         {% endif %}
       </ul>
     </div>

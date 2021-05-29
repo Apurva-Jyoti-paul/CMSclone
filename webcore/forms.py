@@ -28,4 +28,4 @@ class txtForm(forms.ModelForm):
 class save_mediaform(forms.ModelForm):
     class Meta:
         model= media
-        fields=('med',)
+        fields=('med','resourcetype',)
