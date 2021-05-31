@@ -1,8 +1,8 @@
 from django.shortcuts import redirect,render
 from django.contrib.auth.decorators import login_required
-from .models import media, text_block,webpage,website
+from .models import contents, media, text_block,webpage,website
 from django.contrib.auth.models import User
-from .forms import websiteForm,txtForm,picForm,save_mediaform
+from .forms import websiteForm,txtForm,picForm,save_mediaform,save_contents
 import cloudinary
 
 @login_required
@@ -85,24 +85,67 @@ def edit_pagetxt(request,key):
 def betaformview(request,key,k):
 
     page = webpage.objects.get(web__hname=key,identifier=k)
+    arr="&quot;"
     print(page)
     midia=media.objects.filter(webp=page).order_by('-id')
     if(midia.count()):
         print(midia[0].med)
-    return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia})
+    return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia,'k':k,'arr':arr})
 
 @login_required
-def save_media(request,key):
+def save_media(request,key,k):
     if request.method=='POST':
         f= save_mediaform(request.POST)
         l=webpage.objects.get(identifier=key)
         print(l)
+        print(f)
         if f.is_valid():
+            print("success")
             sv=f.save(commit=False)
             sv.webp=l
             print('a')
             sv.save()
-            return redirect("home")
+            return redirect("/betaedit")
     else:
         f=save_mediaform()
         return render(request,'editbeta.html',{'f':f})
+
+
+@login_required
+def save_content(request,k,key):
+    o=webpage.objects.get(identifier=k,web__hname=key)
+    print('a',o)
+    
+    
+    if request.method=='POST':
+        cf=save_contents(request.POST)
+        
+        print(cf)
+        if cf.is_valid():
+            print(cf)
+            t=cf.cleaned_data.get('text')
+            print(t)
+            j=cf.save(commit=False)
+            j.pag=o
+            print(j)
+            j.save()
+            return render(request,'editwebpage.html',{'t':t})
+        else:
+            return redirect('/home')
+    else:
+        cf=save_contents()
+        return render(request,'editbeta.html',{'cf':cf})
+
+def watch(request,key,k):
+    g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
+
+    print(g.count())
+    for i in g:
+        f=i
+    
+    print(g,f)
+    print(f.text)
+    return render(request,'watch.html',{'f':f})
+
+
+    

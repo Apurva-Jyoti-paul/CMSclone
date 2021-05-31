@@ -1,6 +1,8 @@
 {% load static %}
 <html>
   <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
 
     <script>
@@ -8,6 +10,16 @@
   var o;
   c="";
   var t;
+
+function saveo()
+{
+document.getElementById("ip3").value=document.getElementById("texteditor").innerHTML;
+console.log(document.getElementById("ip3").value);
+document.getElementById("ip4").value=document.getElementById("texteditor").style.textAlign;
+console.log(document.getElementById("ip4").value);
+document.getElementById("savecontent").submit();
+}
+
  function addpic(picurl)
  {
 
@@ -48,6 +60,7 @@ else
 function weight(b)
 {
   var i;
+  console.log(b);
   if(b=="b")
   {
     i= document.getElementById("texteditor").innerHTML;
@@ -66,6 +79,21 @@ function weight(b)
     i= document.getElementById("texteditor").innerHTML;
     i= "<u>"+ i + "</u>";
     document.getElementById("texteditor").innerHTML=i;
+  }
+  if(b=="c")
+  {
+    console.log(b);
+    document.getElementById("texteditor").style.textAlign="center";
+  }
+  if(b=="l")
+  {
+    console.log(b);
+    document.getElementById("texteditor").style.textAlign="left";
+  }
+  if(b=="r")
+  {
+    console.log(b);
+    document.getElementById("texteditor").style.textAlign="right";
   }
 }
 
@@ -88,42 +116,56 @@ function weight(b)
 }
 
 body {
-background-image: linear-gradient(to bottom right,rgba(97, 241, 13, 0.911), rgba(33, 66, 177, 0.966));
+background-image: linear-gradient(to bottom right,rgb(255, 255, 255), rgba(203, 203, 204, 0.966));
 margin: 0px;
 padding: 0px;
 }
 
 .topnav {
-background-color: #333;
-overflow: hidden;
-margin:0%;
-}
-
-/* Style the links inside the navigation bar */
-.topnav a {
-float: left;
-color: #f2f2f2;
-text-align: center;
-padding: 17px 16px;
-text-decoration: none;
-font-size: 15px;
-font-weight: 200;
-font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-margin: 0%;
-}
-
-/* Change the color of links on hover */
-.topnav a:hover {
-background-color: rgb(233, 76, 3);
-color: rgb(231, 242, 246);
-font-weight: bold;
-}
+      /*background-color: rgb(20, 18, 24);*/
+      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      overflow: hidden;
+      height: 100px;
+      margin:0%;
+      text-align: center;
+      }
+      
+      /* Style the links inside the navigation bar */
+      .topnav a {
+      float: left;
+      position: relative;
+      top: 25%;
+      color: #ffffff;
+      text-align: center;
+      padding: 15px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      opacity: 1;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin: 0%;
+      }
+      
+      /* Change the color of links on hover */
+      .topnav a:hover {
+      position: relative;
+      height: 100%;
+      background-color: rgb(233, 76, 3);
+      color: rgb(231, 242, 246);
+      font-weight: bold;
+      }
+      
+      .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+      }
 
 .media {
+  overflow: scroll;
   position: absolute;
   right:0%;
-  height: 94%;
-  opacity: 0.5;
+  height: 90%;
+  opacity: 0.8;
   width: 400px;
   margin-right: 0px;
   margin-top: 0px;
@@ -131,24 +173,21 @@ font-weight: bold;
   background-color: black;
 }
 /* Add a color to the active/current link */
-.topnav a.active {
-background-color: #04AA6D;
-color: white;
-}
+
 
 .btn-group .button {
-  background-color: #bdbebd; /* Green */
+  background-color: #000000; /* Green */
   border: 1px solid rgb(242, 248, 242);
   color: white;
   padding: 10px;
+  margin: 5px;
   text-align: center;
   text-decoration: none;
   display: inline-block;
   font-size: 17px;
   cursor: pointer;
-  opacity: 0.6;
   float: left;
-  border-radius: 7px;
+  border:none;
 }
 
 .btn-group .button:not(:last-child) {
@@ -156,7 +195,7 @@ color: white;
 }
 
 .btn-group .button:hover {
-  background-color: #df5d21;
+  background-color: #7313c2;
 }
 
 .topnav a.ri {
@@ -175,17 +214,26 @@ border-right: 0px;
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   background-color: black;
   opacity: 0.5;
-  height: 92%;
+  height: 88%;
   width: 100px;
   padding: 10px;
   text-align: center;
 }
 
-.texteditor
-{
+.mein {
   position: absolute;
   left: 8%;
-  border-radius: 7px;
+  top:15%;
+  width: 67%;
+  height: 5%;
+  background-color: black;
+}
+
+.texteditor
+{
+  overflow: scroll;
+  position: absolute;
+  left: 8%;
   top:20%;
   background-color: rgb(235, 231, 231);
   height: 65%;
@@ -197,17 +245,17 @@ border-right: 0px;
   </head>
 <body>
   <div class="topnav">
-    <a href="{% url 'home' %}">DASHBOARD</a>
-    <a href="#news">ACCOUNT</a>
-    <a href="#contact">CONTACT</a>
-    <a class="ri" href="#about">ABOUT</a>
-  </div>
+    <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
+     <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
+     <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
+     <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
+   </div>
 <div class="c1">
   <div class="btn-group">
     <button class="button" onclick="weight('b')"><i class="fas fa-bold"></i></button>
     <button class="button" onclick="weight('i')"><i class="fas fa-italic"></i></button>
     <button class="button" onclick="weight('u')"><i class="fas fa-underline"></i></button>
-    <button class="button"><i class="fas fa-align-right"></i></button>
+    <button class="button" onclick="weight('c')"><i class="fas fa-align-right"></i></button>
     <button class="button"><i class="fas fa-align-left"></i></button>
     <button class="button"><i class="fas fa-align-center"></i></button>
   </div>
@@ -215,27 +263,49 @@ border-right: 0px;
 <div id="media" class="media">
   
   <p style="text-align: center;font-family: sans-serif;color: white;font-size: 25px;font-weight: bold;opacity: 1;">
-  MEDIA/EFFECTS<br><br><br><br>
+  MEDIA/EFFECTS<br><br><br>
+  <div style="height: 500px;width: 500px;background-color: black;color: azure;">
   {% for i in midia %}
   {% if i.resourcetype == "image" %}
 
-  <img src="{{ i.med }}" height="150" onclick="addpic('{{ i.med }}')" width="150">
-    <br><br>
+  <img style="border-radius: 5px;" src="{{ i.med }}" height="90" onclick="addpic('{{ i.med }}')" width="100">
   {% else %}
-  <video width="320" height="240" onclick="addpic('{{ i.med }}')" controls>
+  <video width="150" height="150" onclick="addpic('{{ i.med }}')" controls>
     <source src="{{ i.med }}" type="video/mp4">
     <source src="{{ i.med }}" type="video/webm">
   Your browser does not support the video tag.
-  </video>
   {% endif %}
+  {% if resourcetype == "audio" %}
+  <audio controls>
+    <source src="{{ i.med }}" type="audio/ogg">
+    <source src="{{ i.med }}" type="audio/mpeg">
+  Your browser does not support the audio element.
+  </audio>
+  {% endif %}
+
+  </video>
+  
   {% endfor %}
-  <br><br>
+  
+</div>
+<br><br>
+<div style="position: relative;left: 50%;">
   <button id="upload_widget" class="cloudinary-button"><i class="fas fa-upload"></i>
-  </button>
+  </button></div>
 </p>
 </div>
+<div class="mein">
+  <div class="btn-group">
+    <button class="button" onclick="weight('b')"><i class="fas fa-bold"></i></button>
+    <button class="button" onclick="weight('i')"><i class="fas fa-italic"></i></button>
+    <button class="button" onclick="weight('u')"><i class="fas fa-underline"></i></button>
+    <button class="button" onclick="weight('r')"><i class="fas fa-align-right"></i></button>
+    <button class="button" onclick="weight('l')"><i class="fas fa-align-left"></i></button>
+    <button class="button" onclick="weight('c')"><i class="fas fa-align-center"></i></button>
+  </div>
+</div>
+<div id="texteditor" style="text-align: center;" class="texteditor" contenteditable="True">
 
-<div id="texteditor" class="texteditor" contenteditable="True">
 
 </div>
 
@@ -244,11 +314,19 @@ border-right: 0px;
   {{ key }}
 </p>
 </div>
-<form id="saveform" action="{% url 'savemedia' page.identifier %}" method="POST" enctype="multipart/form-data">
+<form id="saveform" action="{% url 'savemedia' page.identifier key %}" method="POST" enctype="multipart/form-data">
   {% csrf_token %}
   <input type="hidden" id="ip1" name="med">
   <input type="hidden" id="ip2" name="resourcetype">
 </form>
+<form id="savecontent" action="{% url 'savecontent' page.identifier key %}" method="POST" enctype="multipart/form-data">
+<input type="hidden" id="ip3" name="text">
+<input type="hidden" id="ip4" name="align">
+{% csrf_token %}
+</form>
+<div style="position: absolute;left: 50%;top: 90%;">
+  <button id="save" onclick="saveo()">save</button>
+  </div>
 
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 <script src="{% static 'webcore/upload.js' %}"></script>

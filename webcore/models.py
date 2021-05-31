@@ -40,7 +40,7 @@ class contents(models.Model):
     pag = models.ForeignKey(webpage,on_delete=models.CASCADE)
     text= models.CharField(max_length=10000)
     text2=models.CharField(max_length=100,null=True)
-    align= models.CharField(max_length=50,null=True)
+    align= models.CharField(max_length=50,null=True,default="left")
     dc=models.CharField(max_length=20,null=True)
     
 class media(models.Model):

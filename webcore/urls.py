@@ -7,5 +7,7 @@ urlpatterns=[
     path('Createwebsite/',views.create_website,name='create-website'),
     path('betaform/<key>/<k>',views.betaformview,name='betaview'),
     path('editbeta/<key>',views.edit_pagetxt,name='betaedit'),
-    path('mediasave/<key>',views.save_media,name='savemedia'),
+    path('mediasave/<key>/<k>',views.save_media,name='savemedia'),
+    path('savecontent/<k>/<key>',views.save_content,name='savecontent'),
+    path('watch/<key>/<k>',views.watch,name='watch'),
 ]

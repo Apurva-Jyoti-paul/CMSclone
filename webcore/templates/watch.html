@@ -1,16 +1,11 @@
 <html>
     <head>
         <title>
-            ggmu
+            {{ tit }}
         </title>
         <script>
-        </script>
-    </head>
-    <body>
-<div id="pstebin">
-    <script>
-        var f;
-        j='{{ t }}';
+             var f;
+        j='{{ f.text }}';
         console.log(j);
         function htmlDecode(input)
         {
@@ -20,9 +15,14 @@
             return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
         }
     f=htmlDecode(j);
-    document.write(f);
     console.log(f);
-    </script>
-</div>
+    document.write(f);
+    document.getElementsByTagName("body").style.textAlign='{{ f.align }}'
+    
+        </script>
+    </head>
+    <body>
+        <div id="mypage">
+        </div>
     </body>
 </html>
