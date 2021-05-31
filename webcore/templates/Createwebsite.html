@@ -1,5 +1,6 @@
 <html>
 <head>
+  <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
 <title>
     Create
 </title>
@@ -10,7 +11,7 @@
         height: 25px;
         border:none;
         border-bottom: 2px solid black;
-        opacity: 0.1;
+        background-image: linear-gradient(to bottom right,rgba(224, 236, 226, 0.911), rgba(116, 237, 248, 0.966));
     }
  .f {
      font-size: 25px;
@@ -70,8 +71,9 @@ padding: 0px;
 <form class="create-website" method="POST" enctype="multipart/form-data">
     {% csrf_token %}
 <label>WEBSITE NAME:</label>
-<input class="i" type="text" name="hname" value="Enter website name">
-<input type="submit" value="Create">
+<div style="position: relative;top: 50%;">
+<input class="i" type="text" name="hname"></div><br>
+<button style="background-color:blue;border:none;height: 30px;box-shadow:2px 2px #333;border-radius: 2px;" type="submit"><i style="size: 20px;" class="fas fa-check-circle"></i></button>
 </form>
 </div>
 </body>

@@ -1,0 +1,105 @@
+
+<html>
+    <head>
+    <title>
+        Add Webpage
+    </title>
+    <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Trirong">
+    <style>
+        .topnav {
+      /*background-color: rgb(20, 18, 24);*/
+      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      overflow: hidden;
+      height: 100px;
+      margin:0%;
+      width: 100%;
+      position:fixed;
+      text-align: center;
+      }
+      
+      /* Style the links inside the navigation bar */
+      .topnav a {
+      float: left;
+      position: relative;
+      top: 25%;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      opacity: 1;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin: 0%;
+      }
+      
+      /* Change the color of links on hover */
+      .topnav a:hover {
+      position: relative;
+      height: 100%;
+      background-color: rgb(233, 76, 3);
+      color: rgb(231, 242, 246);
+      font-weight: bold;
+      }
+      
+      .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+      }
+      
+body {
+    height: 100vh;
+    background-image: linear-gradient(to bottom right,rgba(255, 255, 255, 0.911), rgba(228, 218, 218, 0.966));
+    margin: 0px;
+    padding: 0px;
+}
+.box1{
+    color: rgb(255, 255, 255);
+    text-align: center;
+    font-family: "Trirong", serif;
+    padding: 2px;
+    font-weight: bolder;
+    font-size: 25px;
+    position: absolute;
+    top:37%;
+    left:30%;
+    line-height: 100px;
+    height: 40%;
+    width: 40%;
+    background-color: black;
+    opacity: 0.7;vertical-align: middle;
+    border-radius: 8px;
+    box-shadow: 2px 2px rgb(28, 31, 31);
+}
+.i1{
+    width: 450px;
+    border:none;
+    border-bottom:2px solid blanchedalmond ;
+    background-color: black;
+    color: whitesmoke;
+}
+    </style></head>
+    <body>
+    <div>
+        <div class="topnav">
+          <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
+           <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
+           <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
+           <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
+         </div>
+        <div class="box1">
+            <form action="{% url 'createpage' websi %}" method="POST" enctype="multipart/form-data">
+            <label>Enter Subdomain:</label><br>
+            {% csrf_token %}
+            <input class="i1" type="text" name="identifier"><br>
+            <label>Enter title:  </label><br>
+            <input class="i1" type="text" name="title" value="untitled"><br>
+            <button style="background-color:blue;border:none;height: 30px;box-shadow:2px 2px #333;border-radius: 2px;" type="submit"><i style="size: 20px;" class="fas fa-check-circle"></i></button>
+        </form>
+
+        </div>
+
+    </body>
+    
+</html>

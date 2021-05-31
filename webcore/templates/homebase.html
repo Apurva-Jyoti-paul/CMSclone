@@ -1,0 +1,108 @@
+<html>
+    <head>
+        <title>
+            HOME
+        </title>
+        <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+<style>
+    /* Add a black background color to the top navigation */
+    .topnav {
+      /*background-color: rgb(20, 18, 24);*/
+      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      overflow: hidden;
+      height: 100px;
+      margin:0%;
+      width: 100%;
+      position:fixed;
+      text-align: center;
+      }
+      
+      /* Style the links inside the navigation bar */
+      .topnav a {
+      float: left;
+      position: relative;
+      top: 25%;
+      color: #ffffff;
+      text-align: center;
+      padding: 20px;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 800;
+      opacity: 1;
+      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      margin: 0%;
+      }
+      
+      /* Change the color of links on hover */
+      .topnav a:hover {
+      position: relative;
+      height: 100%;
+      background-color: rgb(233, 76, 3);
+      color: rgb(231, 242, 246);
+      font-weight: bold;
+      }
+      
+      .topnav a.active {
+      background-color: #04AA6D;
+      color: white;
+      }
+      
+body {
+    height: 100vh;
+    background-image: linear-gradient(to bottom right,rgba(255, 255, 255, 0.911), rgba(224, 224, 224, 0.966));
+    margin: 0px;
+    padding: 0px;
+}
+
+ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+  width: 200px;
+  text-align: center;
+  opacity: 0.4;
+  background-color: #0c07077a;
+}
+
+li a {
+  display: block;
+  font-weight: bold;
+  color: #000;
+  padding: 8px 16px;
+  text-decoration: none;
+}
+
+li a:hover {
+  background-color: rgb(0, 0, 0);
+  color: white;
+  opacity: 1;
+}
+
+.media{
+  width: 100%;
+  color: azure;
+  height: 500px;
+  background-color: black;
+  opacity: 0.8;
+  text-align: center;
+  padding-top: 50px;
+  border: solid 2px black;
+  border-radius: 7px;
+  position: absolute;
+  /*left:35%;*/
+  top: 40%;
+  background-image: linear-gradient(to bottom right,rgba(34,45,53,1));
+  
+}
+</style>
+</head>
+<body>
+    <div>
+        <div class="topnav">
+          <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
+           <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
+           <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
+           <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
+         </div>
+</body>
+</html>

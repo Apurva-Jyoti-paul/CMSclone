@@ -2,15 +2,17 @@ from django.shortcuts import redirect,render
 from django.contrib.auth.decorators import login_required
 from .models import contents, media, text_block,webpage,website
 from django.contrib.auth.models import User
-from .forms import websiteForm,txtForm,picForm,save_mediaform,save_contents
+from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_contents
 import cloudinary
+from django.http import HttpResponseForbidden
 
 @login_required
 def index(request):
     #a=
     a= website.objects.filter(admin=request.user)
     b= webpage.objects.filter(web__admin=request.user)
-    return render(request,'home.html',{'a':a,'b':b})
+    midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
+    return render(request,'home.html',{'a':a,'b':b,'midia':midia})
 # Create your views here.
 
 def view(request,key):
@@ -148,4 +150,25 @@ def watch(request,key,k):
     return render(request,'watch.html',{'f':f})
 
 
-    
+@login_required  
+def crt_page(request,key):
+    if request.method=='POST':
+        try:
+            q=website.objects.get(hname=key)
+            if (request.user==q.admin):
+                if(q):
+                    form=pageForm(request.POST)
+                    if form.is_valid():
+                        k=form.save(commit=False)
+                        k.web=q
+                        k.save()
+                        return redirect('/home')
+            else:
+                return render(request,'nwebsite.html',{})
+        except:
+            return HttpResponseForbidden()
+    else:
+        form=pageForm()
+        q=website.objects.get(hname=key)
+        return render(request,'createpage.html',{'form':form,'websi':q})
+            

@@ -5,6 +5,18 @@
             HOME
         </title>
         <script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script>
+  function openNav() {
+  document.getElementById("mySidenav").style.width = "250px";
+  document.getElementById("main").style.marginLeft = "250px";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("main").style.marginLeft= "0";
+}
+        </script>
 <style>
     /* Add a black background color to the top navigation */
     .topnav {
@@ -13,6 +25,8 @@
       overflow: hidden;
       height: 100px;
       margin:0%;
+      width: 100%;
+      position:fixed;
       text-align: center;
       }
       
@@ -77,25 +91,112 @@ li a:hover {
   opacity: 1;
 }
 
+.media{
+  width: 100%;
+  color: azure;
+  height: 500px;
+  background-color: black;
+  opacity: 0.8;
+  text-align: center;
+  padding-top: 50px;
+  border: solid 2px black;
+  border-radius: 7px;
+  position: absolute;
+  /*left:35%;*/
+  top: 40%;
+  background-image: linear-gradient(to bottom right,rgba(34,45,53,1));
+  
+}
+
+.sidenav {
+  height: 100%;
+  width: 0;
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: #111;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 25px;
+  color: #818181;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover {
+  color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+
+
 </style>
     </head>
     <body>
-    <div>
+    <div id="main">
       <div class="topnav">
+        <b> <a href="#dgdf"><span style="font-size:20px;cursor:pointer" onclick="openNav()">&#9776;</span></a></b>
         <b> <a href="{% url 'home' %}">DASHBOARD<br><br><i class="fas fa-home"></i></a></b>
          <a href="#news">ACCOUNT<br><br><i style="size: 20px;" class="fas fa-user-circle"></i></a>
          <a href="#contact">CONTACT<br><br><i class="fas fa-id-card-alt"></i></a>
          <a style="position: relative;left: 70%;" class="ri" href="#about">ABOUT</a>
+         
        </div>
+       <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#">About</a>
+        <a href="#">Services</a>
+        <a href="#">Clients</a>
+        <a href="#">Contact</a>
+      </div>
 
 
-       <ul class="websites">
+     <!--  <ul class="websites">
            {% for i in a %}
                 <li><a class="webs" href="#ddfs">{{ i.hname }}</a></li>
            {% endfor %}     
-       </ul>   
-
-
+       </ul>   -->
+<div class="media">
+  MEDIA<br><br>
+  <div style="background-color: black;opacity: 1;position: relative;top: 20%;">
+  
+       {% for i in midia %}
+       {% if i.resourcetype == "image" %}
+     
+       <img style="border-radius: 5px;background-color: black;opacity: 1;" src="{{ i.med }}" height="200" onclick="addpic('{{ i.med }}')" width="250">
+       {% else %}
+       <video width="200" height="200" onclick="addpic('{{ i.med }}')" controls>
+         <source src="{{ i.med }}" type="video/mp4">
+         <source src="{{ i.med }}" type="video/webm">
+       Your browser does not support the video tag.
+       {% endif %}
+       {% if resourcetype == "audio" %}
+       <audio controls>
+         <source src="{{ i.med }}" type="audio/ogg">
+         <source src="{{ i.med }}" type="audio/mpeg">
+       Your browser does not support the audio element.
+       </audio>
+       {% endif %}
+     
+       </video>
+       
+       {% endfor %}
+      </div>
+       </div>
        <!-- <img height="100" width="200" src="{% static 'webcore/ss.png' %}"> -->
        
     </body>

@@ -34,3 +34,9 @@ class save_contents(forms.ModelForm):
     class Meta:
         model= contents
         fields=('text','align',)
+
+class pageForm(forms.ModelForm):
+    class Meta:
+        model= webpage
+        fields=('title','identifier',)
+
