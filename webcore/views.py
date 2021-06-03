@@ -90,9 +90,16 @@ def betaformview(request,key,k):
     arr="&quot;"
     print(page)
     midia=media.objects.filter(webp=page).order_by('-id')
+    g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
+
+    f=g[0]
+    print(g,f)
+    print(f.text)
     if(midia.count()):
         print(midia[0].med)
-    return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia,'k':k,'arr':arr})
+    
+  
+    return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia,'k':k,'arr':arr,'f':f})
 
 @login_required
 def save_media(request,key,k):
@@ -129,8 +136,16 @@ def save_content(request,k,key):
             print(t)
             j=cf.save(commit=False)
             j.pag=o
-            print(j)
+            
             j.save()
+            print(j)
+            g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
+
+            print(g.count())
+            for i in g:
+                fof=i
+            print(fof)
+        
             return render(request,'editwebpage.html',{'t':t})
         else:
             return redirect('/home')
@@ -141,12 +156,10 @@ def save_content(request,k,key):
 def watch(request,key,k):
     g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
 
-    print(g.count())
-    for i in g:
-        f=i
-    
+    f=g[0]
     print(g,f)
     print(f.text)
+    print(f.align)
     return render(request,'watch.html',{'f':f})
 
 

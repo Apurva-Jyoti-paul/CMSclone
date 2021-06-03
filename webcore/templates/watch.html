@@ -17,7 +17,8 @@
     f=htmlDecode(j);
     console.log(f);
     document.write(f);
-    document.getElementsByTagName("body").style.textAlign='{{ f.align }}'
+    console.log("{{ f.align }}")
+    document.getElementsByTagName("body").style.textAlign='{{ f.align }}';
     
         </script>
     </head>

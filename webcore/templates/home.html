@@ -1,6 +1,11 @@
 {% load static %}
 <html>
     <head>
+      <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@700&display=swap" rel="stylesheet">
+
+
         <title>
             HOME
         </title>
@@ -21,28 +26,32 @@ function closeNav() {
     /* Add a black background color to the top navigation */
     .topnav {
       /*background-color: rgb(20, 18, 24);*/
-      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      background-image: linear-gradient(to bottom right,rgba(0, 0, 0, 0.911), rgba(19, 18, 18, 0.966));
       overflow: hidden;
       height: 100px;
       margin:0%;
       width: 100%;
       position:fixed;
+      opacity:0.7;
       text-align: center;
+      overflow: hidden;
       }
       
       /* Style the links inside the navigation bar */
       .topnav a {
       float: left;
       position: relative;
+      overflow: hidden;
       top: 25%;
-      color: #ffffff;
+      color: #1900ff;
       text-align: center;
       padding: 20px;
       text-decoration: none;
       font-size: 15px;
       font-weight: 800;
       opacity: 1;
-      font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+      /*font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+      font-family: 'Montserrat', sans-serif;
       margin: 0%;
       }
       
@@ -62,7 +71,7 @@ function closeNav() {
       
 body {
     height: 100vh;
-    background-image: linear-gradient(to bottom right,rgba(255, 255, 255, 0.911), rgba(224, 224, 224, 0.966));
+    background-image: url("https://i.redd.it/masziae3b6h61.jpg");
     margin: 0px;
     padding: 0px;
 }
@@ -93,6 +102,7 @@ li a:hover {
 
 .media{
   width: 100%;
+  overflow: hidden;
   color: azure;
   height: 500px;
   background-color: black;
@@ -102,6 +112,8 @@ li a:hover {
   border: solid 2px black;
   border-radius: 7px;
   position: absolute;
+  font-family: 'Josefin Sans', sans-serif;
+
   /*left:35%;*/
   top: 40%;
   background-image: linear-gradient(to bottom right,rgba(34,45,53,1));
@@ -177,7 +189,7 @@ li a:hover {
        {% for i in midia %}
        {% if i.resourcetype == "image" %}
      
-       <img style="border-radius: 5px;background-color: black;opacity: 1;" src="{{ i.med }}" height="200" onclick="addpic('{{ i.med }}')" width="250">
+      <a href="{{ i.med }}" ><img style="border-radius: 5px;background-color: black;opacity: 1;" src="{{ i.med }}" height="200" width="250"></a> 
        {% else %}
        <video width="200" height="200" onclick="addpic('{{ i.med }}')" controls>
          <source src="{{ i.med }}" type="video/mp4">

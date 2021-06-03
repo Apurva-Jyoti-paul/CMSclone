@@ -97,6 +97,10 @@ function weight(b)
   }
 }
 
+
+    //document.write(f);
+  //  document.getElementsByTagName("body").style.textAlign='{{ f.align }}'
+
       </script>
 
  <style>
@@ -123,11 +127,12 @@ padding: 0px;
 
 .topnav {
       /*background-color: rgb(20, 18, 24);*/
-      background-image: linear-gradient(to bottom right,rgba(118, 56, 160, 0.911), rgba(19, 18, 18, 0.966));
+      background-image: linear-gradient(to bottom right,rgba(20, 8, 29, 0.911), rgba(19, 18, 18, 0.966));
       overflow: hidden;
       height: 100px;
       margin:0%;
       text-align: center;
+      opacity: 0.8;
       }
       
       /* Style the links inside the navigation bar */
@@ -135,7 +140,7 @@ padding: 0px;
       float: left;
       position: relative;
       top: 25%;
-      color: #ffffff;
+      color: #1900ff;
       text-align: center;
       padding: 15px;
       text-decoration: none;
@@ -161,7 +166,7 @@ padding: 0px;
       }
 
 .media {
-  overflow: scroll;
+  overflow: hidden;
   position: absolute;
   right:0%;
   height: 90%;
@@ -195,7 +200,7 @@ padding: 0px;
 }
 
 .btn-group .button:hover {
-  background-color: #7313c2;
+  background-color:#1900ff;
 }
 
 .topnav a.ri {
@@ -330,5 +335,20 @@ border-right: 0px;
 
 <script src="https://upload-widget.cloudinary.com/global/all.js" type="text/javascript"></script>  
 <script src="{% static 'webcore/upload.js' %}"></script>
+<script>
+  j="{{ f.text }}";
+
+function htmlDecode(input)
+        {
+            console.log("Process running!");
+            var e = document.createElement('div');
+            e.innerHTML = input;
+            return e.childNodes.length === 0 ? "" : e.childNodes[0].nodeValue;
+        }
+    f=htmlDecode(j);
+    console.log(f);
+    document.getElementById("texteditor").style.textAlign="{{ f.align }}";
+    document.getElementById("texteditor").innerHTML=f;
+</script>
 </body>
 </html>
