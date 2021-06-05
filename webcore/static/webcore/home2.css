@@ -1,0 +1,158 @@
+  /* Add a black background color to the top navigation */
+  .topnav {
+    /*background-color: rgb(20, 18, 24);*/
+    background-image: linear-gradient(to bottom right,rgba(0, 0, 0, 0.911), rgba(19, 18, 18, 0.966));
+    overflow: hidden;
+    height: 100px;
+    margin:0%;
+    width: 100%;
+    position:fixed;
+    opacity:0.7;
+    text-align: center;
+    overflow: hidden;
+    }
+    
+    /* Style the links inside the navigation bar */
+    .topnav a {
+    float: left;
+    position: relative;
+    overflow: hidden;
+    top: 25%;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px;
+    text-decoration: none;
+    font-size: 15px;
+    font-weight: 800;
+    opacity: 1;
+    /*font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;*/
+    font-family: 'Montserrat', sans-serif;
+    margin: 0%;
+    }
+    
+    /* Change the color of links on hover */
+    .topnav a:hover {
+    position: relative;
+    height: 100%;
+    background-color: rgb(233, 76, 3);
+    color: rgb(231, 242, 246);
+    font-weight: bold;
+    }
+    
+    .topnav a.active {
+    background-color: #04AA6D;
+    color: white;
+    }
+    
+html,body {
+  overflow-y: hidden;
+  height: 100%;
+  overflow-x: hidden;
+  background-image: url("https://i.redd.it/masziae3b6h61.jpg");
+  margin: 0px;
+  padding: 0px;
+  background-size: cover;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+width: 200px;
+text-align: center;
+opacity: 0.4;
+background-color: #0c07077a;
+}
+
+li a {
+display: block;
+font-weight: bold;
+color: #000;
+padding: 8px 16px;
+text-decoration: none;
+}
+
+li a:hover {
+background-color: rgb(0, 0, 0);
+color: white;
+opacity: 1;
+}
+
+.media{
+width: 100%;
+overflow: hidden;
+color: azure;
+height: 550px;
+background-color: black;
+opacity: 0.8;
+text-align: center;
+border: solid 2px black;
+border-radius: 7px;
+position: absolute;
+font-family: 'Josefin Sans', sans-serif;
+box-shadow: 5px solid white;
+
+/*left:35%;*/
+top: 40%;
+background-image: linear-gradient(to bottom right,rgba(34,45,53,1));
+
+}
+
+.sidenav {
+height: 100%;
+width: 0;
+position: fixed;
+z-index: 1;
+top: 0;
+left: 0;
+background-color: #111;
+overflow-x: hidden;
+transition: 0.5s;
+padding-top: 60px;
+}
+
+.sidenav a {
+padding: 8px 8px 8px 32px;
+text-decoration: none;
+font-size: 25px;
+color: #818181;
+display: block;
+transition: 0.3s;
+}
+
+.sidenav a:hover {
+color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+position: absolute;
+top: 0;
+right: 25px;
+font-size: 36px;
+margin-left: 50px;
+}
+
+.info{
+width: 700px;
+height:200px;
+text-align: center;
+overflow: hidden;
+position: relative;left: 10px;top:120px;
+background-color: black;
+opacity: 0.8;
+color: #7a79c2;
+font-family: 'Mate SC', serif;
+border-radius: 10px;
+
+}
+.topinfo{
+position: relative;
+top:0%;
+width: 100%;
+color: rgb(255, 255, 255);
+height:20px;
+padding: 3px;
+background-color: rgba(255, 255, 0, 0.63);
+}
+
+

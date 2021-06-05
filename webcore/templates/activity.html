@@ -1,0 +1,70 @@
+
+<html>
+<head>
+    <title>
+        activity
+    </title>
+    <style>
+        .ghg{
+            position: absolute;
+            top:100px;
+            overflow: hidden;
+        }
+
+        .pag{
+            overflow: hidden;
+            width: 2000px;
+            background-color: black;
+            height: 50px;
+            opacity: 0.8;
+            border: 1px solid black;
+            box-shadow: 9px solid blanchedalmond;
+            margin-bottom:10px;
+            line-height: 50px;
+        }
+        .body{
+            overflow: hidden;
+        }
+
+        .webbase{
+            position:absolute;
+            top: 105px;
+            background-color: black;
+            opacity: 0.8;
+            overflow:hidden;
+            width:100%;
+            height: 100%;
+            padding: 20px;
+        }
+
+        .webcard{
+            height:200px;
+            width: 400px;
+            border-radius: 8px;
+            background-color: black;
+            color: cornsilk;
+            text-align: center;
+            line-height: 200px;
+            position: relative;
+        }
+    </style>
+</head>
+<body>
+    {% extends "homebase.html" %}
+    {% block content %}
+    <div class="topnav">
+        <a href="../home">Dashboard</a>
+        <a href="#news">Account</a>
+        <a href="#contact">Contact</a>
+        <a class="ri" href="#about">About</a>
+      </div>
+    <div class="webbase">
+    {% for i in site %}
+    <div class="webcard">
+        {{ i.hname|title }}
+    </div>
+    {% endfor %}
+    </div>
+    {% endblock content %}
+</body>
+</html>

@@ -4,15 +4,23 @@ from .models import contents, media, text_block,webpage,website
 from django.contrib.auth.models import User
 from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_contents
 import cloudinary
-from django.http import HttpResponseForbidden
+from django.http import HttpResponseForbidden,HttpResponseNotFound
+from django.views.decorators.cache import never_cache
 
+@never_cache
 @login_required
 def index(request):
     #a=
     a= website.objects.filter(admin=request.user)
     b= webpage.objects.filter(web__admin=request.user)
     midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
-    return render(request,'home.html',{'a':a,'b':b,'midia':midia})
+    webno=a.count()
+    pagno=b.count()
+    midia2=media.objects.filter(webp__web__admin=request.user)
+    midno=midia2.count()
+    print(webno,pagno,midno)
+
+    return render(request,'home.html',{'a':a,'b':b,'midia':midia,'webno':webno,'pagno':pagno,'midno':midno})
 # Create your views here.
 
 def view(request,key):
@@ -46,6 +54,8 @@ def view(request,key):
         else:
             return redirect('error404.html')
 
+
+@never_cache
 @login_required
 def create_website(request):
     if request.method=='POST':
@@ -55,11 +65,12 @@ def create_website(request):
             f=form.save(commit=False)
             f.admin= request.user
             f.save()
-            return redirect('home.html')
+            return redirect('home/')
     else:
         form = websiteForm()
         return render(request,'Createwebsite.html',{'form':form})
-        
+
+@never_cache        
 @login_required
 def edit_pagetxt(request,key):
     if request.method=='POST':
@@ -82,7 +93,7 @@ def edit_pagetxt(request,key):
     else:
         form=txtForm()
         return render(request,'editbeta.html',{'form':form})
-
+@never_cache
 @login_required
 def betaformview(request,key,k):
 
@@ -92,15 +103,19 @@ def betaformview(request,key,k):
     midia=media.objects.filter(webp=page).order_by('-id')
     g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
 
-    f=g[0]
-    print(g,f)
-    print(f.text)
+    if g:
+        f=g[0]
+        print(g,f)
+        print(f.text)
+    else:
+        f=''
     if(midia.count()):
         print(midia[0].med)
     
   
     return render(request,'editbeta.html',{'page':page,'key':key,'midia':midia,'k':k,'arr':arr,'f':f})
 
+@never_cache
 @login_required
 def save_media(request,key,k):
     if request.method=='POST':
@@ -119,7 +134,7 @@ def save_media(request,key,k):
         f=save_mediaform()
         return render(request,'editbeta.html',{'f':f})
 
-
+@never_cache
 @login_required
 def save_content(request,k,key):
     o=webpage.objects.get(identifier=k,web__hname=key)
@@ -144,6 +159,8 @@ def save_content(request,k,key):
             print(g.count())
             for i in g:
                 fof=i
+             
+
             print(fof)
         
             return render(request,'editwebpage.html',{'t':t})
@@ -153,16 +170,18 @@ def save_content(request,k,key):
         cf=save_contents()
         return render(request,'editbeta.html',{'cf':cf})
 
+@never_cache
 def watch(request,key,k):
     g=contents.objects.filter(pag__identifier=k,pag__web__hname=key).order_by('-id')
 
+    print(g)
     f=g[0]
     print(g,f)
     print(f.text)
     print(f.align)
     return render(request,'watch.html',{'f':f})
 
-
+@never_cache
 @login_required  
 def crt_page(request,key):
     if request.method=='POST':
@@ -184,4 +203,39 @@ def crt_page(request,key):
         form=pageForm()
         q=website.objects.get(hname=key)
         return render(request,'createpage.html',{'form':form,'websi':q})
-            
+
+@never_cache
+@login_required
+def show_all(request):
+    site=website.objects.filter(admin=request.user)
+    pages= webpage.objects.filter(web__admin=request.user)
+    
+    for s in site:
+        print("\n Site name: "+s.hname)
+        for f in pages:
+            if(f.web.hname==s.hname):
+                print(f.identifier)
+    
+
+    return render(request,'activity.html',{'site':site,'pages':pages})
+@never_cache
+@login_required
+def delete_website(request,key):
+    g=website.objects.filter(admin=request.user,hname=key)
+    
+    if(g.count()==1):
+        g.delete()
+
+    return redirect('/home')    
+
+
+def action_panel(request,key):
+
+    c=webpage.objects.filter(web__hname=key,web__admin=request.user)
+    
+    if(c):
+        t=c.count()
+        print(t)
+        return render(request,'objects.html',{'no':t,'pages':c,'key':key})
+    else:
+        return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')

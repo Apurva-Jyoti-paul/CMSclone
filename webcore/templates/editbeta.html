@@ -11,14 +11,7 @@
   c="";
   var t;
 
-function saveo()
-{
-document.getElementById("ip3").value=document.getElementById("texteditor").innerHTML;
-console.log(document.getElementById("ip3").value);
-document.getElementById("ip4").value=document.getElementById("texteditor").style.textAlign;
-console.log(document.getElementById("ip4").value);
-document.getElementById("savecontent").submit();
-}
+
 
  function addpic(picurl)
  {
@@ -309,7 +302,7 @@ border-right: 0px;
     <button class="button" onclick="weight('c')"><i class="fas fa-align-center"></i></button>
   </div>
 </div>
-<div id="texteditor" style="text-align: center;" class="texteditor" contenteditable="True">
+<div id="texteditor" class="texteditor" contenteditable="True">
 
 
 </div>
@@ -349,6 +342,19 @@ function htmlDecode(input)
     console.log(f);
     document.getElementById("texteditor").style.textAlign="{{ f.align }}";
     document.getElementById("texteditor").innerHTML=f;
+
+function saveo()
+{
+  var alignment;
+document.getElementById("ip3").value=document.getElementById("texteditor").innerHTML;
+console.log(document.getElementById("ip3").value);
+alignment=document.getElementById("texteditor").style.textAlign;
+//console.log(alignment);
+document.getElementById("ip4").value=alignment;
+
+console.log(document.getElementById("ip4").value);
+document.getElementById("savecontent").submit();
+}
 </script>
 </body>
 </html>

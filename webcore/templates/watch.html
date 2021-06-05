@@ -16,6 +16,7 @@
         }
     f=htmlDecode(j);
     console.log(f);
+    f="<div style=\"text-align: "+ '{{ f.align }}' + ";\">"+f+"</div>"; 
     document.write(f);
     console.log("{{ f.align }}")
     document.getElementsByTagName("body").style.textAlign='{{ f.align }}';

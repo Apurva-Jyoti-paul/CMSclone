@@ -1,0 +1,103 @@
+
+<html>
+    <head>
+        <title>
+            activity
+        </title>
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+Tammudu+2:wght@400;500&display=swap" rel="stylesheet">
+<script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+        <style>
+            .ghg{
+                position: absolute;
+                top:100px;
+                overflow: hidden;
+            }
+    
+            .pag{
+                overflow: hidden;
+                width: 2000px;
+                background-color: black;
+                height: 50px;
+                opacity: 0.8;
+                border: 1px solid black;
+                box-shadow: 9px solid blanchedalmond;
+                margin-bottom:10px;
+                line-height: 50px;
+            }
+            .body{
+                overflow: hidden;
+            }
+    
+            .webbase{
+                position:absolute;
+                top: 105px;
+                background-color: black;
+                opacity: 0.8;
+                overflow:hidden;
+                width:100%;
+                height: 100%;
+                padding: 0%;
+            }
+    
+            .webcard{
+                height:200px;
+                width: 400px;
+                border-radius: 8px;
+                background-color: black;
+                color: cornsilk;
+                text-align: center;
+                line-height: 200px;
+                position: relative;
+            }
+
+            .field1{
+                color:rgb(0, 0, 0);
+                overflow-x: hidden;
+                height:50px;
+                border-color: black;
+                background-image: linear-gradient(to bottom right,rgb(247, 243, 243),rgb(10, 202, 90));
+                width: 100%;
+                border-style: solid;
+                border-width: 1px;
+                margin-bottom: 5px;
+                line-height: 50px;
+                padding: 5px;
+                border-radius:5px ;
+                margin-right: 3px;
+                font-family: 'Baloo Tammudu 2', cursive;
+            }
+
+            .field1 a{
+                text-decoration: none;
+                color: rgb(0, 0, 0);
+                font-weight: bolder;
+            }
+        </style>
+    </head>
+    <body>
+        {% extends "homebase.html" %}
+        {% block content %}
+        <div class="topnav">
+            <a href="../home">Dashboard</a>
+            <a href="#news">Account</a>
+            <a href="#contact">Contact</a>
+            <a class="ri" href="#about">About</a>
+          </div>
+
+          <div class="webbase">
+              dsf
+              {% for i in pages %}
+
+              <div class="field1">
+                <a href="{% url 'watch' i.web.hname i.identifier %}"> {{ i.identifier|title }}<a>
+                    <a style="position: absolute;right:10%" href="{% url 'betaview' i.web.hname i.identifier %}"><i class="far fa-edit"></i></a>
+                    <a style="position: absolute;right: 7%;" href="#mm"><i style="color: crimson;" class="fas fa-trash-alt"></i></a>
+                </div>
+
+              {% endfor %}
+              <a style="position: absolute;right: 10%;" href="{% url 'createpage' key %}"><i style="color: rgb(94, 255, 0);size: 30px;" class="fas fa-plus-circle"></i></a>
+          </div>
+        {% endblock content %}
+    </body>
+    </html>

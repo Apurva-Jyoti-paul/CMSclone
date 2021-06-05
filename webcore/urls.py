@@ -11,4 +11,8 @@ urlpatterns=[
     path('savecontent/<k>/<key>',views.save_content,name='savecontent'),
     path('watch/<key>/<k>',views.watch,name='watch'),
     path('newpage/<key>',views.crt_page,name='createpage'),
+    path('activity/',views.show_all,name='activity'),
+    path('delete/<key>',views.delete_website,name="delete"),
+    path('objectinfo/<key>',views.action_panel,name='objectinfo'),
 ]
+
