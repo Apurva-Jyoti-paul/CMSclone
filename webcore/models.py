@@ -1,6 +1,8 @@
 from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
+from ckeditor.fields import RichTextField
+
 
 al= (
     ('center','center'),
@@ -47,5 +49,10 @@ class media(models.Model):
     med = models.URLField(max_length=1000,null=True)
     webp= models.ForeignKey(webpage,on_delete=models.CASCADE)
     resourcetype= models.CharField(max_length=10,null=True)
+
+class testtext(models.Model):
+    text=RichTextField()
+
+
 
 # Create your models here.my

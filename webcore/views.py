@@ -1,11 +1,17 @@
 from django.shortcuts import redirect,render
 from django.contrib.auth.decorators import login_required
-from .models import contents, media, text_block,webpage,website
+from .models import contents, media, text_block,webpage,website,testtext
 from django.contrib.auth.models import User
-from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_contents
+from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_contents,testform
 import cloudinary
 from django.http import HttpResponseForbidden,HttpResponseNotFound
 from django.views.decorators.cache import never_cache
+
+
+
+def base(request):
+    return render(request,'index.html',{})
+
 
 @never_cache
 @login_required
@@ -239,3 +245,21 @@ def action_panel(request,key):
         return render(request,'objects.html',{'no':t,'pages':c,'key':key})
     else:
         return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')
+
+def show_testt(request):
+    sso=testtext.objects.all()
+    for i in sso:
+        print(i.text)
+    s=sso[1]
+    return render(request,'testtemp.html',{'s':s})
+
+def take_test(request):
+    if request.method=='POST':
+        f=testform(request.POST,request.FILES)
+        if f.is_valid():
+            g=f.save(commit=False)
+            g.save()
+            return redirect('testtemp.html')
+    else:
+        f=testform()
+        return render(request,'testform.html',{'f':f})

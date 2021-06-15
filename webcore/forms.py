@@ -1,8 +1,11 @@
 from django import forms
 from django.forms import fields, models
 from django.forms.forms import Form
-from .models import media, webpage,website,text_block,contents
+from .models import media, testtext, webpage,website,text_block,contents
 from cloudinary.forms import CloudinaryFileField
+
+from ckeditor.fields import RichTextField
+
 
 class websiteForm(forms.ModelForm):
     class Meta:
@@ -40,3 +43,8 @@ class pageForm(forms.ModelForm):
         model= webpage
         fields=('title','identifier',)
 
+class testform(forms.ModelForm):
+    text=RichTextField()
+    class Meta:
+        model=testtext
+        fields=('text',)

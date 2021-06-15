@@ -14,5 +14,8 @@ urlpatterns=[
     path('activity/',views.show_all,name='activity'),
     path('delete/<key>',views.delete_website,name="delete"),
     path('objectinfo/<key>',views.action_panel,name='objectinfo'),
+    path('',views.base,name='base'),
+    path('testalpha/',views.take_test,name='testwrite'),
+    path('testbeta/',views.show_testt,name='testread'),
 ]
 

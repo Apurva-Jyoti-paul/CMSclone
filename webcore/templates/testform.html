@@ -1,0 +1,6 @@
+<form action="{% url 'testwrite' %}" method="POST" enctype="multipart/form-data">
+    {{ f.media }}
+    {% csrf_token %}
+    {{ f.as_p }}
+    <button type="submit">Submit</button>
+</form>
