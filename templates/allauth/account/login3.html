@@ -1,0 +1,95 @@
+<html>
+<head>
+<title>
+  login
+</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
+<script src="https://kit.fontawesome.com/1d7bc52942.js" crossorigin="anonymous"></script>
+<style>
+.decloc {
+  position: absolute;
+  left: 35%;
+  text-align: center;
+  height: 500px;
+  width: 400px;
+  background-color: rgb(22, 2, 37);
+  padding: 40px;
+  opacity: 0.8;
+  border-radius: 10px;
+}
+
+
+.tdecloc {
+  color: azure;
+}
+</style>
+</head>
+<body>
+  <body>
+
+
+
+
+
+
+
+{% block content %}
+<br><br><br>
+<div class="decloc">
+  <div class="tdecloc">
+
+
+
+
+
+
+
+
+
+
+
+<form class="login" method="POST" action="/accounts/login/">
+  {% csrf_token %}
+  <p><label for="id_login">Username:</label> <input style="border: blueviolet;width: 200px;" type="text" name="login" placeholder="Username" autocomplete="username" maxlength="150" required="" id="id_login"></p>
+<p><label for="id_password">Password:</label> <input type="password" name="password" placeholder="Password" autocomplete="current-password" required="" id="id_password"></p>
+<p><label for="id_remember">Remember Me:</label> <input type="checkbox" name="remember" id="id_remember"></p>
+  
+  <input type="hidden" name="next" value="/home/">
+  
+
+  <button style="background-color: rgb(14, 88, 207);width: 300px;padding-top: 12px;padding-bottom: 12px;border-radius: 7px;opacity: 1;" class="primaryAction" type="submit">Sign In   <i class="fas fa-sign-in-alt" aria-hidden="true"></i></button><br>
+ <br><br> <a style="color: rgb(255, 0, 0);" class="button secondaryAction" href="/accounts/password/reset/"><b>Forgot Password?</b></a>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<form class="login" method="POST" action="{% url 'account_login' %}">
+  {% csrf_token %}
+  {{ form.as_p }}
+  {% if redirect_field_value %}
+  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+  {% endif %}
+
+  <button style="background-color: rgb(14, 88, 207);width: 300px;padding-top: 12px;padding-bottom: 12px;border-radius: 7px;opacity: 1;" class="primaryAction" type="submit">sign in  <i class="fas fa-sign-in-alt"></i></button><br>
+ <br><br> <a style="color: rgb(255, 0, 0);" class="button secondaryAction" href="{% url 'account_reset_password' %}"><b>Forgot password</b></a>
+</form>
+<br><br>
+<p>If you have not created an account yet, then please do
+  <a href="{{ signup_url }}">sign up</a> first.</p>
+{% endblock %}
+</div>
+</div>
+</body>
+</html>

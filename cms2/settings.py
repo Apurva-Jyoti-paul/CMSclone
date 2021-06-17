@@ -51,6 +51,21 @@ INSTALLED_APPS = [
 
 ]
 
+
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height' : 500,
+        'width' : 1700,
+        'extraPlugins': ','.join(
+            [
+               'youtube',
+            ]
+        ),
+    },
+}
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
