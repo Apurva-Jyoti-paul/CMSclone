@@ -19,9 +19,9 @@
         <div class="container"><a class="navbar-brand logo" href="#" style="font-size: 38px;filter: saturate(44%);font-family: Montserrat, sans-serif;text-shadow: 0px 0px 4px;">CMS</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navcol-1">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link active" href="index.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="/home/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="features.html">Features</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Login</a></li>
+                    <li class="nav-item"><a class="nav-link" href="accounts/login/">Login</a></li>
                     <li class="nav-item"><a class="nav-link" href="about-us.html">About Us</a></li>
                     <li class="nav-item"><a class="nav-link" href="contact-us.html">Contact Us</a></li>
                 </ul>
@@ -29,7 +29,7 @@
         </div>
     </nav>
     <main class="page landing-page">
-        <section class="clean-block clean-hero" style="color: rgba(9, 162, 255, 0.85);background: url(&quot;assets/img/tech/image4.jpg&quot;);">
+        <section class="clean-block clean-hero" style="color: rgba(9, 162, 255, 0.85);background: url(&quot;{% static 'webcore/assets/img/tech/image4.jpg' %}&quot;);">
             <div class="text">
                 <h2>Build and manage your content with ease.</h2>
                 <p>With our cloud storage integration and easy to use text editor we allow to manage your website without any hardship.&nbsp;</p><a href="{% url 'home' %}"><button class="btn btn-outline-light btn-lg" type="button">Get Started</button></a>

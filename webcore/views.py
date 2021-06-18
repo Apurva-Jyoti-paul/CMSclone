@@ -18,15 +18,18 @@ def base(request):
 def index(request):
     #a=
     a= website.objects.filter(admin=request.user)
-    b= webpage.objects.filter(web__admin=request.user)
-    midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
+    b= testtext.objects.filter(site__admin=request.user).order_by('-id')
+  #  midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
     webno=a.count()
     pagno=b.count()
     midia2=media.objects.filter(webp__web__admin=request.user)
+    b=b[0:3]
+    for i in a:
+        print(i.hname,i.id)
     midno=midia2.count()
     print(webno,pagno,midno)
 
-    return render(request,'home.html',{'a':a,'b':b,'midia':midia,'webno':webno,'pagno':pagno,'midno':midno})
+    return render(request,'Maindashboard.html',{'a':a,'b':b,'webno':webno,'pagno':pagno,'midno':midno})
 # Create your views here.
 
 def view(request,key):
@@ -71,7 +74,7 @@ def create_website(request):
             f=form.save(commit=False)
             f.admin= request.user
             f.save()
-            return redirect('home/')
+            return redirect('../activity/')
     else:
         form = websiteForm()
         return render(request,'Createwebsite.html',{'form':form})
@@ -215,15 +218,7 @@ def crt_page(request,key):
 def show_all(request):
     site=website.objects.filter(admin=request.user)
     pages= webpage.objects.filter(web__admin=request.user)
-    
-    for s in site:
-        print("\n Site name: "+s.hname)
-        for f in pages:
-            if(f.web.hname==s.hname):
-                print(f.identifier)
-    
-
-    return render(request,'activity.html',{'site':site,'pages':pages})
+    return render(request,'table.html',{'site':site,'pages':pages})
 @never_cache
 @login_required
 def delete_website(request,key):
@@ -246,20 +241,22 @@ def action_panel(request,key):
     else:
         return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')
 
-def show_testt(request):
-    sso=testtext.objects.all()
-    for i in sso:
-        print(i.text)
-    s=sso[1]
+def show_testt(request,key,key2):
+    sso=testtext.objects.filter(site__hname=key,title=key2)
+    for s in sso:
+        pass
+
     return render(request,'testtemp.html',{'s':s})
 
-def take_test(request):
+def take_test(request,key):
     if request.method=='POST':
+        websiteobject=website.objects.get(hname=key)
         f=testform(request.POST,request.FILES)
         if f.is_valid():
             g=f.save(commit=False)
+            g.site=websiteobject
             g.save()
-            return redirect('testtemp.html')
+            return redirect('../')
     else:
         f=testform()
-        return render(request,'testform.html',{'f':f})
+        return render(request,'testform.html',{'f':f,'key':key})

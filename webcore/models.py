@@ -51,8 +51,9 @@ class media(models.Model):
     resourcetype= models.CharField(max_length=10,null=True)
 
 class testtext(models.Model):
+    title=models.CharField(max_length=1000,default='untitled')
     text=RichTextField()
-
-
+    site=models.ForeignKey(website,on_delete=models.CASCADE,default=7)
+    time=models.DateTimeField(null=True,auto_now_add=True)
 
 # Create your models here.my
