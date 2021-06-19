@@ -3,8 +3,14 @@
         <title>
             {{ s.title }}
         </title>
+        <link rel="stylesheet"
+      href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.0.1/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
     </head>
-    <body>
-{{ s.text|safe }}
+    <body style="background-color: whitesmoke;">
+        <div style="width: 45%;margin-left:27.5%;background-color: white;">
+{{ s.text2|safe }}
+</div>
     </body>
 </html>

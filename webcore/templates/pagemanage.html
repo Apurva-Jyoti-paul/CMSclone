@@ -27,7 +27,7 @@
                 <hr class="sidebar-divider my-0">
                 <ul class="navbar-nav text-light" id="accordionSidebar">
                     <li class="nav-item"><a class="nav-link" href="../home/"><i class="fas fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-table"></i><span>Websites</span></a><a class="nav-link active" href="#"><i class="fa fa-video-camera"></i><span>Gallery</span></a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#"><i class="fas fa-table"></i><span>Pages</span></a><a class="nav-link active" href="#"><i class="fa fa-video-camera"></i><span>Gallery</span></a></li>
                 </ul>
                 <div class="text-center d-none d-md-inline"><button class="btn rounded-circle border-0" id="sidebarToggle" type="button"></button></div>
             </div>
@@ -54,31 +54,31 @@
                     </div>
                 </nav>
                 <div class="container-fluid">
-                    <h3 class="text-dark mb-4">Sites</h3>
+                    <h3 class="text-dark mb-4">Pages</h3>
                     <div class="card shadow">
                         <div class="card-header py-3">
-                            <p class="text-primary m-0 fw-bold">Site Data</p>
+                            <p class="text-primary m-0 fw-bold">Page Data</p>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive table mt-2" id="dataTable" role="grid" aria-describedby="dataTable_info">
                                 <table class="table table-striped my-0" id="dataTable">
                                     <thead>
                                         <tr>
-                                            <th>Site Name</th>
+                                            <th>Page Name</th>
                                             <th>Author</th>
-                                            <th>Add</th>
+                                            <th>Time</th>
                                             <th>Delete</th>
                                             <th>Edit</th>
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        {% for i in site %}
+                                        {% for i in pages %}
                                         <tr style="height: 47px;width: 1091px;">
-                                            <td>{{ i.hname }}</td>
+                                            <td><a href="{% url 'testread' key i.title %}">{{ i.title }}</a></td>
                                             <td>{{ request.user }}</td>
-                                            <td><a href="{% url 'testwrite' i.hname %}"><i class="fa fa-plus-circle" style="font-size: 24px;width: 12.5781px;color: rgb(52,184,74);"></i></a></td>
-                                            <td><a href="{% url 'delete' i.hname %}"><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></a></td>
-                                            <td><a href="{% url 'objectinfo' i.hname %}"><i class="fa fa-gears" style="font-size: 24px;width: 12.5781px;color: var(--bs-primary);"></i></a></td>
+                                            <td>{{ i.time }}</td>
+                                            <td><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></td>
+                                            <td><i class="fa fa-gears" style="font-size: 24px;width: 12.5781px;color: var(--bs-primary);"></i></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

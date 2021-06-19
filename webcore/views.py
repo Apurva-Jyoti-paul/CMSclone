@@ -232,12 +232,12 @@ def delete_website(request,key):
 
 def action_panel(request,key):
 
-    c=webpage.objects.filter(web__hname=key,web__admin=request.user)
+    c=testtext.objects.filter(site__hname=key,site__admin=request.user)
     
     if(c):
         t=c.count()
         print(t)
-        return render(request,'objects.html',{'no':t,'pages':c,'key':key})
+        return render(request,'pagemanage.html',{'no':t,'pages':c,'key':key})
     else:
         return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')
 

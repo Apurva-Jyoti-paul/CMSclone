@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from cloudinary.models import CloudinaryField
 from ckeditor.fields import RichTextField
+from ckeditor_uploader.fields import RichTextUploadingField
 
 
 al= (
@@ -55,5 +56,5 @@ class testtext(models.Model):
     text=RichTextField()
     site=models.ForeignKey(website,on_delete=models.CASCADE,default=7)
     time=models.DateTimeField(null=True,auto_now_add=True)
-
+    text2=RichTextUploadingField(blank=True,null=True)
 # Create your models here.my
