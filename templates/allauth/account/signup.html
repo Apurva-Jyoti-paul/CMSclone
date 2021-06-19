@@ -1,21 +1,48 @@
-{% extends "account/base.html" %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
 
-{% load i18n %}
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>signupcms</title>
+    <link rel="stylesheet" href="{% static 'webcore/assets5/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Aclonica&amp;display=swap">
+    <link rel="stylesheet" href="{% static 'webcore/assets5/css/Fixed-Header-Cruzmaltina.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets5/css/gradient-navbar-1.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets5/css/gradient-navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets5/css/Ludens-Users---2-Register.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets5/css/styles.css' %}">
+</head>
 
-{% block head_title %}{% trans "Signup" %}{% endblock %}
+<body>
+    <section class="register-photo" style="background-color: transparent;">
+        <nav class="navbar navbar-dark navbar-expand-md fixed-top" id="app-navbar" style="height: 78px;">
+            <div class="container"><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+                <div class="collapse navbar-collapse" id="navcol-1">
+                    <ul class="navbar-nav">
+                        <li class="nav-item"><a class="nav-link active" href="#" style="font-size: 28px;text-shadow: 0px 0px 5px;">CMS</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../" style="height: 27px;margin-top: 8px;">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../login/" style="margin-top: 9px;">Login</a></li>
+                        <li class="nav-item"><a class="nav-link" href="../../admin/" style="margin-top: 9px;">Admin</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="form-container" style="margin-top: 10%;">
+            <div class="image-holder" style="background: url(&quot;{% static 'webcore/assets5/img/IINET-DOSAGE-1.jpg' %}&quot;) left / cover no-repeat;"></div>
+            <form method="post" action="/accounts/signup/">
+                {% csrf_token %}
+                <h2 class="text-center" style="font-family: Aclonica, sans-serif;">Sign Up</h2>
+                <div class="form-group mb-3"><input class="form-control" type="text" name="username" autocomplete="username" placeholder="Username" minlength="1" maxlength="150" required="" id="id_username"></div>
+                <div class="form-group mb-3"><input class="form-control" type="email" name="email" placeholder="Email address" autocomplete="email" id="id_email"></div>        
+                <div class="form-group mb-3"><input class="form-control" type="password" name="password1" placeholder="Password" autocomplete="new-password" required="" id="id_password1"></div>
+                <div class="form-group mb-3"><input class="form-control" type="password" name="password2" placeholder="Password (again)" required="" id="id_password2"></div>
+                <div class="form-group mb-3"><button class="btn btn-primary d-block w-100" type="submit" style="color: rgb(255,255,255);background-color: #00b5a8;">Sign Up</button></div><a class="already" href="../login/">Already have an account proceed to login</a>
+            </form>
+        </div>
+    </section>
+    <script src="{% static 'webcore/assets5/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
 
-{% block content %}
-<h1>{% trans "Sign Up" %}</h1>
-
-<p>{% blocktrans %}Already have an account? Then please <a href="{{ login_url }}">sign in</a>.{% endblocktrans %}</p>
-
-<form class="signup" id="signup_form" method="post" action="{% url 'account_signup' %}">
-  {% csrf_token %}
-  {{ form.as_p }}
-  {% if redirect_field_value %}
-  <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
-  {% endif %}
-  <button type="submit">{% trans "Sign Up" %} &raquo;</button>
-</form>
-
-{% endblock %}
+</html>

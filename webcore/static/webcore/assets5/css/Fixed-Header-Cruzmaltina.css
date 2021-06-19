@@ -1,0 +1,8 @@
+#app-navbar {
+  background: linear-gradient(45deg,#e76304,#e77d04 9%,#ff9900);
+}
+
+.dropdown-menu {
+  border-radius: 0;
+}
+
