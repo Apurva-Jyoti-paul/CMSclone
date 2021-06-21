@@ -56,5 +56,10 @@ class testtext(models.Model):
     text=RichTextField()
     site=models.ForeignKey(website,on_delete=models.CASCADE,default=7)
     time=models.DateTimeField(null=True,auto_now_add=True)
-    text2=RichTextUploadingField(blank=True,null=True)
+    text2=RichTextUploadingField(blank=True,null=True,external_plugin_resources=[(
+        'youtube',
+        '/static/webcore/youtube/',
+        'plugin.js',
+    )],
+    )
 # Create your models here.my
