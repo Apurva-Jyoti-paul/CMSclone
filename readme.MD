@@ -4,4 +4,4 @@
 
 ----
 
-![screenshot](./media/Screenshot from 2021-06-22 12-54-36.png?raw=true)
+![screenshot](./media/e9b14a05665b50ef91b77ed30217944c.jpg?raw=true)
