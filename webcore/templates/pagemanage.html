@@ -77,8 +77,8 @@
                                             <td><a href="{% url 'testread' key i.title %}">{{ i.title }}</a></td>
                                             <td>{{ request.user }}</td>
                                             <td>{{ i.time }}</td>
-                                            <td><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></td>
-                                            <td><i class="fa fa-gears" style="font-size: 24px;width: 12.5781px;color: var(--bs-primary);"></i></td>
+                                            <td><a href="{% url 'delpag' key i.title %}"><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></a></td>
+                                            <td><a href="{% url 'modify' key i.title %}"><i class="fa fa-gears" style="font-size: 24px;width: 12.5781px;color: var(--bs-primary);"></i></a></td>
                                         </tr>
                                         {% endfor %}
                                     </tbody>

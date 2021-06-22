@@ -17,5 +17,7 @@ urlpatterns=[
     path('',views.base,name='base'),
     path('testalpha/<key>',views.take_test,name='testwrite'),
     path('testbeta/<key>/<key2>',views.show_testt,name='testread'),
+    path('delpag/<key>/<k>',views.delete_text,name='delpag'),
+    path('modify/<key>/<k>',views.modify_test,name='modify'),
 ]
 

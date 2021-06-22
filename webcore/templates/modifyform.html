@@ -1,0 +1,53 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>editorcms</title>
+    <link rel="stylesheet" href="{% static 'webcore/assets2/bootstrap/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets2/fonts/ionicons.min.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets2/css/Footer-Basic.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets2/css/Navigation-with-Button.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets2/css/Pre-loader.css' %}">
+    <link rel="stylesheet" href="{% static 'webcore/assets2/css/styles.css' %}">
+</head>
+
+<body style="border-color: var(--bs-purple);">
+    <nav class="navbar navbar-light navbar-expand-md navigation-clean-button" style="height: 112px;color: var(--bs-purple);box-shadow: 0px 0px 7px rgb(134,104,190);border: 69px none #ffffff;">
+        <div class="container"><a class="navbar-brand" href="#" style="font-size: 40px;color: var(--bs-gray-dark);text-shadow: 0px 0px 4px;">CMS</a><button data-bs-toggle="collapse" class="navbar-toggler" data-bs-target="#navcol-1"><span class="visually-hidden">Toggle navigation</span><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navcol-1">
+                <ul class="navbar-nav me-auto" style="text-shadow: 0px 0px 20px;">
+                    <li class="nav-item"><a class="nav-link" href="{% url 'home' %}" style="color: var(--bs-dark);">Dashboard</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="#" style="color: var(--bs-dark);">Account</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#" style="color: var(--bs-dark);">Settings</a></li>
+                </ul><span class="navbar-text actions"> <a class="btn btn-light action-button" role="button" href="../accounts/logout/" style="background: rgb(255,47,1);">Log Out</a></span>
+            </div>
+        </div>
+    </nav>
+    <div class="container" style="height: 800px;margin-top: 20px;margin-bottom: 10px;margin-left: 10px;">
+        <form action="{% url 'modify' key k %}" method="POST" enctype="multipart/form-data">
+        {{ f.media }}
+        {% csrf_token %}
+        {{ f.as_p }}
+        <button class="btn btn-primary" type="submit" style="border-radius: 71px;margin-top: 44px;box-shadow: 3px 2px 11px var(--bs-success);background: rgb(58,133,92);border-color: rgb(64,129,86);margin-bottom: 71px;">&nbsp; &nbsp; Save&nbsp; &nbsp;&nbsp;</button>
+    </form>
+    </div>
+    <div class="container" style="text-align: center;border-color: rgb(33, 37, 41);border-top-color: rgb(33,;border-right-color: 37,;border-bottom-color: 41);border-left-color: 37,;">
+        <footer class="footer-basic">
+            <div class="social"><a href="#"><i class="icon ion-social-instagram"></i></a><a href="#"><i class="icon ion-social-snapchat"></i></a><a href="#"><i class="icon ion-social-twitter"></i></a><a href="#"><i class="icon ion-social-facebook"></i></a></div>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">Home</a></li>
+                <li class="list-inline-item"><a href="#">Services</a></li>
+                <li class="list-inline-item"><a href="#">About</a></li>
+                <li class="list-inline-item"><a href="#">Terms</a></li>
+                <li class="list-inline-item"><a href="#">Privacy Policy</a></li>
+            </ul>
+            <p class="copyright">GLUG CMS © 2021</p>
+        </footer>
+    </div>
+    <script src="{% static 'webcore/assets2/bootstrap/js/bootstrap.min.js' %}"></script>
+</body>
+
+</html>

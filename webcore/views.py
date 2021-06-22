@@ -260,3 +260,29 @@ def take_test(request,key):
     else:
         f=testform()
         return render(request,'testform.html',{'f':f,'key':key})
+
+
+def delete_text(request,key,k):
+    f=testtext.objects.get(site__hname=key,title=k)
+    if(f):
+        f.delete()
+    return redirect('../../activity')
+
+
+def modify_test(request,key,k):
+    if request.method=='POST':
+        websitetext=testtext.objects.filter(site__hname=key,title=k)
+        f=testform(request.POST,request.FILES)
+        if f.is_valid():
+            givtitle=f.cleaned_data.get('title')
+            newcont=f.cleaned_data.get('text2')
+            websitetext.update(text2=newcont,title=givtitle)
+            return redirect('/activity')
+    else:
+        basedata=testtext.objects.get(site__hname=key,title=k)
+        data={
+            'title':basedata.title,
+            'text2':basedata.text2,
+        }
+        f=testform(data)
+        return render(request,'modifyform.html',{'f':f,'key':key,'k':k})
