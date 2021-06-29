@@ -54,6 +54,7 @@ class media(models.Model):
 class testtext(models.Model):
     title=models.CharField(max_length=1000,default='untitled')
     text=RichTextField()
+    visibility=models.IntegerField(default=1)
     site=models.ForeignKey(website,on_delete=models.CASCADE,default=7)
     time=models.DateTimeField(null=True,auto_now_add=True)
     text2=RichTextUploadingField(blank=True,null=True,external_plugin_resources=[(

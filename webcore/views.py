@@ -242,19 +242,29 @@ def action_panel(request,key):
         return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')
 
 def show_testt(request,key,key2):
+    
     sso=testtext.objects.filter(site__hname=key,title=key2)
     for s in sso:
         pass
 
-    return render(request,'testtemp.html',{'s':s})
+    if (s.visibility):    
+        return render(request,'testtemp.html',{'s':s})
+    else :
+        if request.user==s.site.admin:
+            return render(request,'testtemp.html',{'s':s})
+        else :
+            return HttpResponseNotFound('<h1 style="text-align:center;">No Such Page Exists</h1>')
 
-def take_test(request,key):
+
+def take_test(request,key,optional):
     if request.method=='POST':
         websiteobject=website.objects.get(hname=key)
         f=testform(request.POST,request.FILES)
         if f.is_valid():
             g=f.save(commit=False)
             g.site=websiteobject
+            if (optional=='1'):
+                g.visibility=0
             g.save()
             return redirect('../')
     else:
