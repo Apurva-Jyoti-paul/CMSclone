@@ -246,6 +246,16 @@ def show_testt(request,key,key2):
     sso=testtext.objects.filter(site__hname=key,title=key2)
     for s in sso:
         pass
+####ip identification ###
+    x_forwarded_for =request.META.get('HTTP_X_FORWARDED_FOR')
+
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[0]
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    print(ip)
+
+####ip identification ###
 
     if (s.visibility):    
         return render(request,'testtemp.html',{'s':s})
@@ -266,7 +276,8 @@ def take_test(request,key,optional):
             if (optional=='1'):
                 g.visibility=0
             g.save()
-            return redirect('../')
+            l='/objectinfo/'+str(key)
+            return redirect(l)
     else:
         f=testform()
         return render(request,'testform.html',{'f':f,'key':key})
@@ -296,3 +307,10 @@ def modify_test(request,key,k):
         }
         f=testform(data)
         return render(request,'modifyform.html',{'f':f,'key':key,'k':k})
+
+def change_visibilty(request,key,key2):
+    text= testtext.objects.filter(site__hname=key,title=key2)
+    text.update(visibility=1)
+    print("done!")
+    loc="/testbeta/"+str(key)+"/"+str(key2)
+    return redirect(loc)

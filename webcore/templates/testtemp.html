@@ -9,8 +9,26 @@
 <script>hljs.highlightAll();</script>
     </head>
     <body style="background-color: whitesmoke;">
+        {% if s.visibility == 0 %}
+        <div style="position: absolute;right: 200px;top: 50%;">
+        <button onclick="publish('{{ s.site.hname }}','{{ s.title }}')">publish</button>
+        </div>
+        {% endif %}
         <div style="width: 48%;margin-left:27.5%;background-color: white;padding: 5px;box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);min-height: 990px;">
 {{ s.text2|safe }}
 </div>
+<script>
+      function publish(a,b)
+        {
+           var c= confirm("Do you want to publish this page!!!");
+           
+            if(c)
+            {   
+                var newloc= '../../publish/'+a+'/'+b;
+               console.log(newloc);
+                location.replace(newloc);
+            }
+        }
+</script>
     </body>
 </html>

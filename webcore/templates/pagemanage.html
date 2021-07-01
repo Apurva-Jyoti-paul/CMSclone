@@ -77,7 +77,7 @@
                                             <td><a href="{% url 'testread' key i.title %}">{{ i.title }}</a></td>
                                             <td>{{ request.user }}</td>
                                             <td>{{ i.time }}</td>
-                                            <td><a href="{% url 'delpag' key i.title %}"><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></a></td>
+                                            <td><a onclick="deletepage('{{ key }}','{{ i.title }}')"><i class="fa fa-trash" style="font-size: 24px;width: 12.5781px;color: var(--bs-red);"></i></a></td>
                                             <td><a href="{% url 'modify' key i.title %}"><i class="fa fa-gears" style="font-size: 24px;width: 12.5781px;color: var(--bs-primary);"></i></a></td>
                                         </tr>
                                         {% endfor %}
@@ -106,6 +106,16 @@
         function createnew()
         {
             document.getElementById("websiteform").submit();
+        }
+        function deletepage(a,b)
+        {
+           var c= confirm("Are you sure you Want to Delete this page!!!");
+           
+            if(c)
+            {   
+                var newloc= '../../delpag/'+a+'/'+b;
+                location.replace(newloc);
+            }
         }
     </script>
 </body>

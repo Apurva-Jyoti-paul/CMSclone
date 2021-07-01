@@ -19,5 +19,6 @@ urlpatterns=[
     path('testbeta/<key>/<key2>',views.show_testt,name='testread'),
     path('delpag/<key>/<k>',views.delete_text,name='delpag'),
     path('modify/<key>/<k>',views.modify_test,name='modify'),
+    path('publish/<key>/<key2>',views.change_visibilty,name='publish'),
 ]
 
