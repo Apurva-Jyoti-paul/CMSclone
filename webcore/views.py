@@ -1,6 +1,6 @@
 from django.shortcuts import redirect,render
 from django.contrib.auth.decorators import login_required
-from .models import contents, media, text_block,webpage,website,testtext
+from .models import contents, media, text_block, viewip,webpage,website,testtext
 from django.contrib.auth.models import User
 from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_contents,testform
 import cloudinary
@@ -19,6 +19,8 @@ def index(request):
     #a=
     a= website.objects.filter(admin=request.user)
     b= testtext.objects.filter(site__admin=request.user).order_by('-id')
+    ips= viewip.objects.filter(text__site__admin=request.user)
+    totalviews=ips.count()
   #  midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
     webno=a.count()
     pagno=b.count()
@@ -29,7 +31,7 @@ def index(request):
     midno=midia2.count()
     print(webno,pagno,midno)
 
-    return render(request,'Maindashboard.html',{'a':a,'b':b,'webno':webno,'pagno':pagno,'midno':midno})
+    return render(request,'Maindashboard.html',{'a':a,'b':b,'webno':webno,'pagno':pagno,'midno':midno,'views':totalviews})
 # Create your views here.
 
 def view(request,key):
@@ -246,16 +248,8 @@ def show_testt(request,key,key2):
     sso=testtext.objects.filter(site__hname=key,title=key2)
     for s in sso:
         pass
-####ip identification ###
-    x_forwarded_for =request.META.get('HTTP_X_FORWARDED_FOR')
-
-    if x_forwarded_for:
-        ip = x_forwarded_for.split(',')[0]
-    else:
-        ip = request.META.get('REMOTE_ADDR')
-    print(ip)
-
-####ip identification ###
+    
+    iplog(request,s)  #logging new users ip!
 
     if (s.visibility):    
         return render(request,'testtemp.html',{'s':s})
@@ -314,3 +308,30 @@ def change_visibilty(request,key,key2):
     print("done!")
     loc="/testbeta/"+str(key)+"/"+str(key2)
     return redirect(loc)
+
+def iplog(request,a):
+    ipval= viewip.objects.filter(text=a)
+    t=1
+    ####ip identification ###
+    x_forwarded_for =request.META.get('HTTP_X_FORWARDED_FOR')
+
+    if x_forwarded_for:
+        gip = x_forwarded_for.split(',')[0]
+    else:
+        gip = request.META.get('REMOTE_ADDR')
+    print(gip)
+
+####ip identification ###
+    if ipval:
+        for i in ipval:
+            if i==gip:
+                t=0
+                break
+        if(t):
+            newip= viewip(ip=gip,text=a)
+            newip.save()
+            print('new ip logged')
+    else:
+        newip= viewip(ip=gip,text=a)
+        newip.save()
+        print('new ip logged')

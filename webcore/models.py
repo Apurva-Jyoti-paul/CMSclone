@@ -64,3 +64,9 @@ class testtext(models.Model):
     )],
     )
 # Create your models here.my
+
+
+class viewip(models.Model):
+
+    ip=models.CharField(max_length=254)
+    text=models.ForeignKey(testtext,on_delete=models.CASCADE)

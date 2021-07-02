@@ -1,7 +1,7 @@
 from webcore.forms import testform
 from django.contrib import admin
 from django.contrib.admin.sites import site
-from .models import contents, media, testtext, website,webpage,text_block
+from .models import contents, media, testtext, viewip, website,webpage,text_block
 
 class webpageInline(admin.StackedInline):
 
@@ -25,6 +25,6 @@ admin.site.register(website)
 admin.site.register(webpage,webpageAdmin)
 admin.site.register(text_block)
 admin.site.register(testtext)
-
+admin.site.register(viewip)
 # Register your models here.
 
