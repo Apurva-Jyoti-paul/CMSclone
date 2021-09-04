@@ -6,7 +6,7 @@ from .forms import pageForm, websiteForm,txtForm,picForm,save_mediaform,save_con
 import cloudinary
 from django.http import HttpResponseForbidden,HttpResponseNotFound
 from django.views.decorators.cache import never_cache
-
+from django.core.exceptions import PermissionDenied
 
 
 def base(request):
@@ -24,6 +24,8 @@ def index(request):
   #  midia=media.objects.filter(webp__web__admin=request.user).order_by('-id')[0:5]
     webno=a.count()
     pagno=b.count()
+
+        
     midia2=media.objects.filter(webp__web__admin=request.user)
     b=b[0:3]
     for i in a:
@@ -276,32 +278,43 @@ def take_test(request,key,optional):
         f=testform()
         return render(request,'testform.html',{'f':f,'key':key})
 
-
+@login_required
 def delete_text(request,key,k):
     f=testtext.objects.get(site__hname=key,title=k)
     if(f):
-        f.delete()
+        if (request.user==f.site.admin) :
+            f.delete()
+        else:
+            raise PermissionDenied()
     return redirect('../../activity')
 
 
+@login_required
 def modify_test(request,key,k):
     if request.method=='POST':
         websitetext=testtext.objects.filter(site__hname=key,title=k)
-        f=testform(request.POST,request.FILES)
-        if f.is_valid():
-            givtitle=f.cleaned_data.get('title')
-            newcont=f.cleaned_data.get('text2')
-            websitetext.update(text2=newcont,title=givtitle)
-            return redirect('/activity')
+        if request.user==websitetext[0].site.admin:
+            f=testform(request.POST,request.FILES)
+            if f.is_valid():
+                givtitle=f.cleaned_data.get('title')
+                newcont=f.cleaned_data.get('text2')
+                websitetext.update(text2=newcont,title=givtitle)
+                return redirect('/activity')
+        else:
+            raise PermissionDenied()
     else:
         basedata=testtext.objects.get(site__hname=key,title=k)
-        data={
-            'title':basedata.title,
-            'text2':basedata.text2,
-        }
-        f=testform(data)
-        return render(request,'modifyform.html',{'f':f,'key':key,'k':k})
+        if basedata.site.admin==request.user:
+            data={
+                'title':basedata.title,
+                'text2':basedata.text2,
+            }
+            f=testform(data)
+            return render(request,'modifyform.html',{'f':f,'key':key,'k':k})
+        else:
+            raise PermissionDenied()
 
+            
 def change_visibilty(request,key,key2):
     text= testtext.objects.filter(site__hname=key,title=key2)
     text.update(visibility=1)
@@ -324,7 +337,7 @@ def iplog(request,a):
 ####ip identification ###
     if ipval:
         for i in ipval:
-            if i==gip:
+            if i.ip==gip:
                 t=0
                 break
         if(t):

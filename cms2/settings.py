@@ -24,10 +24,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'shdukjeui324i23%$#$%yhdjghsdg'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG',cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -60,7 +60,7 @@ CKEDITOR_CONFIGS = {
         'width' : 1700,
         'extraPlugins': ','.join(
             [
-               'youtube','codesnippet',
+               'youtube','codesnippet','markdown',
             ]
         ),
     },
@@ -109,24 +109,24 @@ WSGI_APPLICATION = 'cms2.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-#DATABASES = {
- #   'default': {
-  #      'ENGINE': 'django.db.backends.sqlite3',
-    #    'NAME': BASE_DIR / 'db.sqlite3',
-   # }
-#}
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': config('dbname'),
-        'USER': config('admin'),
-        'PASSWORD': config('dbpass'),
-        'HOST': 'localhost',
-        'PORT': '',
-    }
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': BASE_DIR / 'db.sqlite3',
+        }
 }
+
+
+#DATABASES = {
+   # 'default': {
+    #    'ENGINE': 'django.db.backends.postgresql_psycopg2',
+     #   'NAME': config('dbname'),
+      #  'USER': config('admin'),
+       # 'PASSWORD': config('dbpass'),
+        #'HOST': 'localhost',
+        #'PORT': '',
+    #}
+#}
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
@@ -178,9 +178,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SITE_ID = 1
 
-cloudinary.config(
-  cloud_name = config('cloud_name'),
-  api_key = config('api_key'),
-  api_secret = config('api_secret'),
-  secure = config('secure',cast=bool)
-)
+#cloudinary.config(
+ # cloud_name = config('cloud_name'),
+ # api_key = config('api_key'),
+ # api_secret = config('api_secret'),
+ # secure = config('secure',cast=bool)
+#)

@@ -47,4 +47,4 @@ class testform(forms.ModelForm):
     text=RichTextField()
     class Meta:
         model=testtext
-        fields=('title','text2')
+        fields=('title','headerimage','text2')
